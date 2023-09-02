@@ -344,16 +344,18 @@ header {
 
     .left {
         width: 45%;
+        height: 90%;
     }
     .left {
-        width: 55%;
+        width: 45%;
     }
+
 }
 
 
 @media (max-width: 451px) {
     header {
-        height: 45vh;
+        height: 40vh;
         margin: 0 calc(var(--margin-global)/3);
     }
 
@@ -362,9 +364,19 @@ header {
         width: 100%;
         background-color: transparent;
     }
+
+    .left {
+        width: 40%;
+        height: 80%;
+    }
+    .right {
+        width: 60%;
+        height: 100%;
+    }
+    
     
     .left h1 {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         color: var(--color-light);
         line-height: 2.2rem;
     }

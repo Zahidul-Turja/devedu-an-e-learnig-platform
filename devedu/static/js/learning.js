@@ -52,10 +52,20 @@ contents.forEach((c) => {
 // ! -------------------------- Session Video ----------------------------
 
 while(true) {
+    var n = 1;
     var contents_container = document.querySelector(".contents__container")
-    var session_content = contents_container.querySelector(`[data-serial="${video.dataset.serial}"]`)
+    if (video.dataset.serial <= 0) {
+        var session_content = contents_container.querySelector(`[data-serial="${n}"]`)
+        video.dataset.serial = 1
+    }
+    else {
+        var session_content = contents_container.querySelector(`[data-serial="${video.dataset.serial}"]`)
+    }
 
+    console.log(video.dataset.serial)
     var item_type = session_content.dataset.url.slice(-3)
+    
+    console.log(item_type)
 
     if(item_type != "mp4"){
         video.dataset.serial -= 1;
