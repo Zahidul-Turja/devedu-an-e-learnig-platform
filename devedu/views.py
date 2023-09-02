@@ -63,6 +63,7 @@ def home(request):
     return render(request, "devedu/home.html", context)
 
 
+@csrf_exempt
 @login_required(login_url="/login")
 def payment(request, slug, username):
     user = User.objects.get(username=username)
@@ -167,6 +168,7 @@ def payment_error(request, message):
 # !------------------------ LOG SIGN starts ----------------------------#
 
 
+@csrf_exempt
 def signup(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
@@ -227,6 +229,7 @@ def user_profile(request, username):
 
 
 # ? Check if the same user is trying to edit or not
+@csrf_exempt
 def edit_profile(request, username):
     try:
         user = User.objects.get(username=username)
@@ -453,6 +456,7 @@ def search_user(request, slug):
 
 
 # ! ------------------------------ REVIEW STARTS ---------------------#
+@csrf_exempt
 def review(request, slug, username):
     user = User.objects.get(username=username)
     userProfile = UserProfile.objects.get(user=user)
@@ -502,6 +506,7 @@ def review(request, slug, username):
 
 
 # ! --------------------------------Application-------------------------------#
+@csrf_exempt
 @login_required(login_url="/login")
 def apply(request, username):
     user = User.objects.get(username=username)
@@ -541,7 +546,7 @@ def admin_dashboard(request):
 #! --------------------------------- Add Starts ------------------------------------#
 # ? Check permissions before deleting
 
-
+@csrf_exempt
 def add_new_course(request):
     if request.method == "POST":
         course = CourseForm(request.POST, request.FILES)
@@ -561,6 +566,7 @@ def add_new_course(request):
 # ? Check permissions before deleting
 
 
+@csrf_exempt
 def add_contents(request, id):
     course = Course.objects.get(pk=id)
 
@@ -587,6 +593,7 @@ def add_contents(request, id):
 
 # ! -------------------------------- Edits start ------------------------------#
 # ? Check permissions before deleting
+@csrf_exempt
 def edit_course(request, id):
     course = Course.objects.get(pk=id)
     course_form = CourseForm(instance=course)
@@ -611,6 +618,7 @@ def edit_course(request, id):
 
 
 # ? Check permissions before deleting
+@csrf_exempt
 def edit_content(request, id):
     content = CourseContent.objects.get(pk=id)
     content_form = CourseContentForm(instance=content)
@@ -638,6 +646,7 @@ def edit_content(request, id):
 
 # !----------------------- DELETE STARTS----------------------------#
 # ? Check permissions before deleting
+@csrf_exempt
 def delete_course(request, id):
     course = Course.objects.get(pk=id)
 
@@ -653,6 +662,7 @@ def delete_course(request, id):
 
 
 # ? Check permissions before deleting
+@csrf_exempt
 def delete_content(request, id):
     content = CourseContent.objects.get(pk=id)
     course = Course.objects.get(contents=content)
