@@ -1,0 +1,206 @@
+
+nav {
+    position: relative;
+    height: 3.5rem;
+    width: 100%;
+    padding: 0 var(--margin-global);
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px var(--color-box-shadow);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* ! Left Items start */
+.nav__items-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.search_box  form input {
+    width: 35vw;
+    padding: 0.5rem 1.5rem;
+    color: var(--color-dark);
+    font-size: .9rem;
+    border: 1px solid var(--color-dark);
+    border-radius: 20px;
+    background-color: var(--color-white);
+}
+
+.search_box  form input:focus{
+    outline: none;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-primary-light);
+}
+
+/* ! Left Items end */
+
+
+/* ! Right Items start */
+
+.nav__items-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.nav__items-right a:link,
+.nav__items-right a:visited {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+
+    transition: all 0.2s;
+}
+
+.nav__items-right a:active,
+.nav__items-right a:hover {
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.nav__items-right .btn {
+    padding: .3rem 1rem;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+
+/* ! btn-login */
+.nav__items-right .btn-login:link,
+.nav__items-right .btn-login:visited {
+    border: 1.9px solid var(--color-dark);
+    color: var(--color-dark);
+
+    transition: all 0.3s;
+}
+
+.nav__items-right .btn-login:active,
+.nav__items-right .btn-login:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px var(--color-box-shadow);
+}
+
+
+/* ! btn-signup */
+.nav__items-right .btn-signup:link,
+.nav__items-right .btn-signup:visited {
+    border: 1.9px solid var(--color-light);
+    color: var(--color-white);
+    background-color: var(--color-dark);
+
+    transition: all 0.3s;
+}
+
+.nav__items-right .btn-signup:active,
+.nav__items-right .btn-signup:hover {
+    box-shadow: 0 2px 4px var(--color-box-shadow);
+}
+
+
+/* ! -------------------------- Menu -------------------------- */
+
+nav .nav-icons .material-symbols-outlined {
+    font-size: 2rem;
+    color: var(--color-light);
+}
+
+
+/* ! -------------------------- Menu Ends -------------------------- */
+
+/* ! Right Items end */
+.nav-active {
+    color: var(--color-primary);
+}
+
+.nav-icons {
+    display: none;
+    z-index: 2000;
+}
+
+#menu-btn {
+    margin-left: 1rem;
+}
+
+
+/* ! --------------------- Media ---------------------- */
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        background: transparent;
+        box-shadow: none;
+    }
+    .nav__items-right {
+        flex-direction: column;
+        position: absolute;
+        top: 3rem;
+        right: -100%;
+        background-color: var(--color-primary);
+        width: 20rem;
+        padding: 4rem 0;
+        border-radius: 3px;
+        transition: all 0.2s;
+    }
+
+    .nav__items-right.active {
+        right: 0;
+    }
+
+    nav .nav__items-right a {
+        font-size: 1.3rem !important;
+        color: var(--color-white);
+    }
+    nav .nav__items-right .btn-login:visited,
+    nav .nav__items-right .btn-login:link {
+        color: var(--color-white);
+        border: none;
+        border-top: 1px solid var(--color-white);
+        padding-top: 1rem;
+        border-radius: 0;
+    }
+    nav .nav__items-right .btn-signup:visited,
+    nav .nav__items-right .btn-signup:link {
+        color: var(--color-white);
+        background: transparent;
+        border: none;
+    }
+
+    nav .nav__items-left .search_box  form {
+        width: 80vw;
+        position: absolute;
+        top: 4rem;
+        right: 10vw;
+        border-radius: 3px;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: all 0.2s;
+    }
+
+    nav .nav__items-left .search_box form.active {
+        transform: scaleY(1);
+    }
+
+    nav .nav__items-left .search_box  form input {
+        width: 100%;
+        border-radius: 3px;
+        border: none;
+        border: 1px solid var(--color-light);
+    }
+
+    .nav-icons {
+        display: inline-block;
+    }
+}

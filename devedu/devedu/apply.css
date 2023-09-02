@@ -1,0 +1,50 @@
+.main {
+    margin: 3rem calc(var(--margin-global) * 2);
+}
+
+.main h1 {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+}
+
+.main p {
+    font-size: 1.1rem;
+}
+
+
+.main ul {
+    margin-bottom: 2rem;
+}
+.main ul li {
+    font-size: 1.1rem;
+    margin-left: 1rem;
+    line-height: 1.5rem;
+}
+
+.main h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.main form #id_resume{
+    margin: 1rem 0;
+}
+
+h2 {
+    font-size: 1.2rem;
+    display: inline;
+    margin-right: 1rem;
+}
+
+.back-home:visited,
+.back-home:link {
+    text-decoration: underline;
+    transition: all 0.2s;
+    display: inline;
+}
+.back-home:hover,
+.back-home:active {
+    color: var(--color-primary);
+    text-decoration: underline;
+}

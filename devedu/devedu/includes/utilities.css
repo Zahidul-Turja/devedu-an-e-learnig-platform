@@ -1,0 +1,204 @@
+.btn-primary:link,
+.btn-primary:visited {
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    padding: .4rem 1.3rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 10rem;
+
+    transition: all 0.2s;
+}
+
+.btn-primary:active,
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+
+.btn-secondary:link,
+.btn-secondary:visited{
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-primary);
+    background-color: transparent;
+    padding: .4rem 1.5rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 10rem;
+
+    transition: all 0.2s;
+}
+
+.btn-secondary:active,
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+
+.btn-more:link,
+.btn-more:visited {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    border-bottom: 1.5px solid var(--color-light);
+    transition: all 0.2s;
+}
+
+.btn-more:active,
+.btn-more:hover {
+    color: var(--color-primary-dark);
+    border-bottom: 1.5px solid var(--color-primary-dark);
+}
+
+.btn-black {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--color-white);
+    padding: 8px 15px;
+    margin-right: 1rem;
+    border-radius: 3px;
+    background-color: var(--color-dark);
+    border: none;
+
+    transition: all 0.2s;
+}
+
+.btn-green {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--color-white);
+    padding: 5px 12px;
+    margin-right: 1rem;
+    border-radius: 3px;
+    background-color: var(--color-green);
+    border: none;
+
+    transition: all 0.2s;
+}
+
+
+.btn-blue {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--color-white);
+    padding: 5px 12px;
+    margin-right: 1rem;
+    border-radius: 3px;
+    background-color: var(--color-blue);
+    border: none;
+
+    transition: all 0.2s;
+}
+
+.btn-red {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--color-white);
+    padding: 5px 12px;
+    border-radius: 3px;
+    background-color: var(--color-warning);
+    border: none;
+
+    transition: all 0.2s;
+}
+
+.btn-cancel {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--color-dark);
+    padding: 5px 12px;
+    border-radius: 3px;
+    background-color: var(--color-white);
+    border: 1.5px solid var(--color-dark);
+    margin-right: 5px;
+
+    transition: all 0.2s;
+}
+
+.btn-green:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+.btn-red:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+.btn-blue:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+.btn-black:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+.btn-cancel:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+
+.btn-sign-log {
+    color: var(--color-white);
+    font-size: 1.2rem;
+    height: 2.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    letter-spacing: 1.5px;
+    border: none;
+    background-color: var(--color-dark);
+    border-radius: 5px;
+    box-shadow: 0 5px 10px var(--color-box-shadow);
+
+    transition: all 0.3s;
+}
+
+.btn-sign-log:hover {
+    cursor: pointer;
+    transform:  translateY(-2px);
+    box-shadow: 0 8px 12px var(--color-box-shadow);
+}
+
+.btn-dashboard {
+    align-self: flex-start;
+    margin-bottom: 3rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-bottom: 1.5px solid var(--color-dark);
+
+    transition: all 0.2s;
+}
+
+.btn-dashboard:hover {
+    color: var(--color-primary-dark);
+    border-bottom: 1.5px solid var(--color-primary-dark);
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* !--------------------------- Media------------------------- */
+@media (max-width: 451px) {
+    .btn-primary:link,
+    .btn-primary:visited {
+        font-size: 1rem;
+        border: 1px solid var(--color-primary);
+    }
+
+    .btn-secondary:link,
+    .btn-secondary:visited {
+        font-size: 1rem;
+        border: 1px solid var(--color-primary);
+    }
+}

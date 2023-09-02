@@ -1,0 +1,61 @@
+body {
+    width: 60%;
+    margin: 2rem 20%;
+    text-align: center;
+}
+
+.success {
+    color: var(--color-green);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.invoice {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-light);
+    padding-bottom: 1rem;
+    border-bottom: 1.5px solid var(--color-light);
+}
+
+.detail {
+    width: 100%;
+    text-align: left;
+    padding: 2rem 2rem 0 2rem;
+    margin-bottom: 2rem;
+}
+
+.detail p {
+    margin: .5rem 0;
+}
+
+.detail span {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.bill {
+    font-size: 1.2rem;
+}
+
+.links {
+    text-align: left;
+}
+
+.links a {
+    font-size: 1.22rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 5px;
+    border-bottom: 1.6px solid transparent;
+    margin-right: 2rem;
+
+    transition: all 0.2s;
+}
+
+.links a:hover {
+    color: var(--color-primary-dark);
+    border-bottom: 1.6px solid var(--color-primary-dark);
+}
+

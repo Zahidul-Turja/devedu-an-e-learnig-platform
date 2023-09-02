@@ -1,0 +1,378 @@
+
+/* ! Section Header Start */
+.section_header {
+    width: 100%;
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+}
+.section_header .section_header-container {
+    width: 60%;
+    padding: 2rem 0;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+}
+
+.section_header .section_header-container h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.section_header .section_header-container .author {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-off-white);
+}
+
+.section_header .section_header-container .author a:link,
+.section_header .section_header-container .author a:visited {
+    font-weight: 600;
+    color: var(--color-off-white);
+    border-bottom: 1.5px solid transparent;
+
+    transition: all 0.2s;
+}
+
+.section_header .section_header-container .author a:hover,
+.section_header .section_header-container .author a:active {
+    color: var(--color-white);
+    border-bottom: 1.5px solid var(--color-white);
+}
+
+.section_header .section_header-container video {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 5px;
+    height: auto;
+    opacity: 0.9;
+
+    transition: all 0.3s;
+}
+
+.section_header .section_header-container video:hover {
+    cursor: pointer;
+    opacity: 0.7;
+} 
+
+
+.section_header .section_header-container h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+/* ? AVG REVIEW START */
+
+.material-symbols-outlined {
+    color: var(--color-yellow);
+    font-size: 1.3rem;
+    font-variation-settings:
+    'FILL' 1
+}
+.not-filled { 
+    font-variation-settings:
+    'FILL' 0
+}
+
+.avg_review {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+
+.avg_review p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-yellow) !important;
+}
+
+.avg_review .tot_reviews {
+    font-size: .95rem;
+    font-weight: 400;
+}
+
+.avg_review .stars i {
+    color: var(--color-yellow);
+}
+
+/* ? AVG REVIEW START */
+
+.section_header .section_header-container p {
+    color: var(--color-off-white);
+    margin: 0.3rem 0;
+}
+
+.section_header .section_header-container .rating {
+    margin: 1rem 0;
+    color: var(--color-yellow);
+}
+
+.section_header .section_header-container p span {
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+.section_header .section_header-container .price {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: .5rem 0;
+}
+
+.section_header .section_header-container a {
+    color: var(--color-off-white);
+}
+
+.section_header .section_header-container .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 2rem;
+
+    margin: 1rem 0;
+}
+
+.section_header .section_header-container .btn-enroll:link,
+.section_header .section_header-container .btn-enroll:visited {
+    font-size: 1.2rem;
+    align-self: self-start;
+    color: var(--color-white);
+    font-weight: 600;
+    padding: .5rem 1rem;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 3px;
+
+    transition: all 0.3s;
+}
+
+.section_header .section_header-container .btn-enroll:hover,
+.section_header .section_header-container .btn-enroll:active {
+    background-color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-dark);
+}
+
+.section_header .section_header-container .btn-start:link,
+.section_header .section_header-container .btn-start:visited {
+    font-size: 1.2rem;
+    align-self: self-start;
+    color: var(--color-off-white);
+    font-weight: 500;
+    padding: .5rem 1rem;
+    border: 2px solid var(--color-off-white);
+    border-radius: 3px;
+
+    transition: all 0.3s;
+}
+
+.section_header .section_header-container .btn-start:active,
+.section_header .section_header-container .btn-start:hover {
+    color: var(--color-dark);
+    background-color: var(--color-off-white);
+}
+
+.section_header .section_header-container .btn-review:link,
+.section_header .section_header-container .btn-review:visited {
+    font-size: 1.2rem;
+    align-self: self-start;
+    color: var(--color-dark);
+    font-weight: 600;
+    padding: .5rem 1rem;
+    background-color: var(--color-yellow);
+    border: 2px solid var(--color-yellow);
+    border-radius: 3px;
+
+    transition: all 0.3s;
+}
+
+.section_header .section_header-container .btn-review:hover,
+.section_header .section_header-container .btn-review:active {
+    background-color: transparent;
+    color: var(--color-yellow);
+    border: 2px solid var(--color-yellow);
+}
+
+.section_header .section_header-container .heart {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300
+}
+
+.section_header .section_header-container .heart:link,
+.section_header .section_header-container .heart:visited {
+    align-self: self-start;
+    padding: 0.4rem 1rem;
+    background-color: transparent;
+    border: 2px solid var(--color-off-white);
+    border-radius: 3px;
+
+    transition: all 0.3s;
+}
+
+.section_header .section_header-container .heart:hover {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 300
+}
+
+
+.section_header .section_header-container .btn-gift:link,
+.section_header .section_header-container .btn-gift:visited {
+    align-self: self-start;
+    font-size: 1rem;
+    border-bottom: 1.5px solid var(--color-off-white);
+
+    transition: all 0.2s;
+}
+
+.section_header .section_header-container .btn-gift:hover,
+.section_header .section_header-container .btn-gift:active {
+    color: var(--color-white);
+    border-bottom: 1.5px solid var(--color-white);
+}
+
+/* ! Section Header End */
+
+
+/* ! Section Content Start */
+
+.course_contents {
+    width: 60%;
+    margin: 0 auto;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.course_contents h1 {
+    color: var(--color-dark);
+    font-size: 2rem;
+    font-weight: 600;
+    
+}
+
+.course_contents .table {
+    width: 100%;
+    margin: 2rem 0;
+    border-top: 1.5px solid var(--color-black);
+}
+
+.course_contents .table .content {
+    padding: 1rem 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 1px solid var(--color-light);
+}
+
+.course_contents .content .serial {
+    width: 10%;
+}
+
+.course_contents .content .title {
+    font-weight: 600;
+    width: 75%;
+}
+
+.course_contents .content .title:hover {
+    cursor: pointer;
+}
+
+.course_contents .content .type {
+    font-weight: 500;
+}
+
+/* ! Section Conten End */
+
+
+
+
+/*! ------------------------------------------- Reviews Start ------------------------------------------- */
+.reviews {
+    width: 100%;
+    background-color: var(--color-primary-light);
+    padding: 3rem calc(var(--margin-global)*2);
+}
+
+.reviews h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.reviews .reviews__summary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+.reviews__summary h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.reviews__summary .avg_rating {
+    font-size: 1.1rem;
+    color: var(--color-yellow-dark);
+    font-weight: 600;
+}
+
+.reviews__summary .tot_reviews {
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.reviews__container {
+    margin: 2rem 0;
+}
+
+.review_card {
+    margin-bottom: 4rem;
+    padding: 2rem 3rem;
+    border-bottom: 1.5px solid var(--color-light);
+}
+
+.review_card .top {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.review_card .top img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+}
+
+.review_card .top .stars {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.review_card .top .stars i {
+    font-size: 1rem;
+}
+
+.review_card .top .date {
+    font-size: .8rem;
+    font-weight: 400;
+    margin-left: .5rem;
+}
+
+.review_card .comment {
+    margin: 1rem 0;
+    line-height: 1.5rem;
+}
+
+/*! ------------------------------------------- Reviews End ------------------------------------------- */
