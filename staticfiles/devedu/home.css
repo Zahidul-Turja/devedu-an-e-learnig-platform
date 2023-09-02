@@ -327,6 +327,29 @@ header {
 
 }
 
+@media (max-width: 525px) {
+    header {
+        height: 40vh;
+        margin: 0 1rem;
+    }
+    .left h1 {
+        font-size: 1.7rem;
+        color: var(--color-light);
+        line-height: 2.2rem;
+    }
+    .left h1 span {
+        font-size: 2rem;
+        color: var(--color-primary);
+    }
+
+    .left {
+        width: 45%;
+    }
+    .left {
+        width: 55%;
+    }
+}
+
 
 @media (max-width: 451px) {
     header {
@@ -360,3 +383,5 @@ header {
         margin-bottom: 0rem;
     }
 }
+
+
