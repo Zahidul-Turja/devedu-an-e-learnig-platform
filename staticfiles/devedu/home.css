@@ -327,9 +327,11 @@ header {
 
 }
 
+
 @media (max-width: 451px) {
     header {
         height: 45vh;
+        margin: 0 calc(var(--margin-global)/3);
     }
 
     .course_card .image_container {

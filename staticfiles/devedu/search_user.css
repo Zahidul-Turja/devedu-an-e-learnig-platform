@@ -98,3 +98,30 @@ main form input:focus {
 .btn-gift {
     height: 2rem;
 }
+
+/* ? ---------------------------- media ------------------------------- */
+@media (max-width: 768px) {
+    main {
+        transform: translateY(2rem);
+        padding: 3rem calc(var(--margin-global));
+    }
+    main form input {
+        width: 85%;
+    }
+}
+
+@media (max-width: 450px) {
+    main {
+        padding: 3rem calc(var(--margin-global) / 3);
+    }
+    main form input {
+        width: 85%;
+    }
+}
+
+@media (max-width: 370px) {
+
+    main form input {
+        width: 82%;
+    }
+}

@@ -48,3 +48,12 @@ h2 {
     color: var(--color-primary);
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    body {
+        margin: 0rem;
+    }
+    body .main {
+        transform: translateY(5rem);
+    }
+}

@@ -74,3 +74,48 @@ textarea:focus {
     width: 2rem;
     height: 1rem;
 }
+
+/* ? ---------------------------------- Media --------------------------------- */
+@media (max-width: 768px) {
+    .profile_info {
+        transform: translateY(3rem);
+        margin: 0 calc(var(--margin-global)/2);
+    }
+    .right {
+        width: 40rem;
+    }
+    
+}
+
+@media (max-width: 600px) {
+    .profile_info {
+        margin: 0 calc(var(--margin-global)/2);
+    }
+    .right {
+        width: 40rem;
+    }
+    .label {
+        margin-bottom: .5rem;
+    }
+    input {
+        padding: .5rem;
+    }
+    textarea {
+        padding: 1rem;
+    }
+    
+}
+
+@media (max-width: 451px) {
+    .profile_info {
+        margin: 0 0;
+    }
+    .left {
+        width: 11rem;
+        height: 11rem;
+    }
+    .right {
+        width: 40rem;
+    }
+    
+}

@@ -109,7 +109,7 @@
 }
 
 
-/* ! ---------------------------------------- Course Section Start --------------------------- */
+/* ? ---------------------------------------- Course Section Start --------------------------- */
 .section__courses {
     position: relative;
     width: 100%;
@@ -291,6 +291,29 @@
         margin: 0rem calc(var(--margin-global)/2);
         padding-top: 5rem;
     }
+    .course__container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 2rem;
+        align-items: start;
+        margin: 2.5rem 0;
+    }
+    .course_card .image_container {
+        height: 16rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .profile_info {
+        margin: 0rem calc(var(--margin-global)/2);
+        padding-top: 5rem;
+    }
+    .course__container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .course_card .image_container {
+        height: 13rem;
+    }
 
 }
 
@@ -303,17 +326,29 @@
         width: 10rem;
         height: 10rem;
     }
+    .course__container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .course_card .image_container {
+        height: 20rem;
+        background-color: var(--color-black);
+        margin-bottom: .3rem;
+    }
 
 }
 
 @media (max-width: 320px) {
     .profile_info {
-        margin: 2rem -3rem;
+        transform: translateY(0);
     }
 
     .left {
         width: 7rem;
         height: 7rem;
     }
-
+    .course_card .image_container {
+        height: 15rem;
+        background-color: var(--color-black);
+        margin-bottom: .3rem;
+    }
 }

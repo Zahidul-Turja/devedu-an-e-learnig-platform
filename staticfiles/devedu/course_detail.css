@@ -376,3 +376,46 @@
 }
 
 /*! ------------------------------------------- Reviews End ------------------------------------------- */
+
+
+/* ?---------------------- Media --------------------------- */
+@media (max-width: 991px) {
+    .section_header .section_header-container {
+        width: 75%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section_header {
+        transform: translateY(3rem);
+    }
+    .section_header .section_header-container {
+        width: 80%;
+    }
+
+    .course_contents {
+        width: 70%;
+        margin: 2rem auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .section_header .section_header-container {
+        width: 90%;
+    }
+    .course_contents {
+        width: 80%;
+        margin: 2rem auto;
+    }
+    .reviews {
+        padding: 1rem calc(var(--margin-global));
+    }
+}
+
+@media (max-width: 450px) {
+    .review_card {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border-bottom: 1.5px solid var(--color-light);
+    }
+}

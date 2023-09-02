@@ -236,3 +236,31 @@ textarea:focus {
 .hidden {
     display: none;
 }
+
+
+/* ? --------------------- Media ---------------------------------- */
+@media (max-width: 768px) {
+    .course__description {
+        transform: translateY(2rem);
+        padding: 3rem 10%;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .course__description {
+        transform: translateY(2rem);
+        padding: 2rem 3%;
+    }
+    .reviews {
+        margin: 4rem 1rem;
+    }
+    .review__form {
+        max-width: 100%;
+        padding: 3rem 1rem;
+        margin: 0 auto;
+    }
+    form {
+        width: 100%;
+    }
+}

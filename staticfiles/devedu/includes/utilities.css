@@ -202,3 +202,19 @@
         border: 1px solid var(--color-primary);
     }
 }
+
+@media (max-width: 550px) {
+    .btn-primary:link,
+    .btn-primary:visited {
+    font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .btn-primary:link,
+    .btn-primary:visited {
+        font-size: 1rem;
+        width: 9rem;
+        text-align: center;
+    }
+}

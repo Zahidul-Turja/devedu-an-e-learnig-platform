@@ -80,3 +80,73 @@ ul.errorlist li{
     color: var(--color-warning);
     font-weight: 600;
 }
+
+/* ?---------------------- Media ------------------- */
+@media (max-width: 1080px) {
+    .card {
+        width: 40%;
+        height: auto;
+        padding: 3rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 40%;
+        height: auto;
+        padding: 3rem 0;
+    }
+    .label {
+        font-size: 1.2rem;
+    }
+    .paragraphs p {
+        font-size: 1.1rem;
+    }
+    
+    .paragraphs p a {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 60%;
+        height: auto;
+        padding: 4rem 0;
+    }
+    .label {
+        font-size: 1.3rem;
+    }
+    .paragraphs p {
+        font-size: 1.1rem;
+    }
+    
+    .paragraphs p a {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 451px) {
+    .card {
+        width: 80%;
+        height: auto;
+        border-radius: 5px;
+        padding: 4rem 0;
+        gap: 1rem;
+    }
+    .label {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .card {
+        width: 90%;
+        height: auto;
+        border-radius: 5px;
+        padding: 3rem 0;
+        gap: 1rem;
+    }
+}
