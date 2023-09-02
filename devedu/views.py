@@ -20,6 +20,8 @@ from xhtml2pdf import pisa
 from io import BytesIO
 from django.utils import timezone
 
+from django.views.decorators.csrf import csrf_exempt
+
 # ? Remove before pushing
 stripe.api_key = "sk_test_51NiXeRG2jM3ThQGknB1YyVyOXC9emp3QciLTXpq1mUGrWZo1PIiVQO3kWvoqIQ736tG24sfih9OE0XyM7zVKMVJz00NEYUbiJK"
 
@@ -183,6 +185,7 @@ def signup(request):
     return render(request, "registration/sign_up.html", context)
 
 
+@csrf_exempt
 def user_login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
