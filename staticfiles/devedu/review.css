@@ -1,0 +1,238 @@
+.course__description {
+    background-color: var(--color-light);
+    width: 100%;
+    padding: 3rem 20%;
+}
+
+.course__description .title {
+    font-size: 2.2rem;
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.course__description .author {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-off-white);
+}
+
+.course__description .author a:link,
+.course__description .author a:visited {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-off-white);
+    border-bottom: 1.5px solid var(--color-off-white);
+
+    transition: all 0.2s;
+}
+
+.course__description .author a:active,
+.course__description .author a:hover {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    border-bottom: 1.5px solid var(--color-white);
+}
+
+.course__description .desc_text {
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    color: var(--color-off-white);
+}
+
+.course__description .date {
+    font-size: .9rem;
+    color: var(--color-off-white);
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.course__description .date span {
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+.course__description .price {
+    margin: 1.5rem 0;
+    font-size: 1.7rem;
+    color: var(--color-primary);
+}
+
+.reviews {
+    margin: 3rem calc(var(--margin-global)*2);
+    
+}
+
+.reviews h1 {
+    font-size: 1.7rem;
+    color: var(--color-light);
+    font-weight: 600;
+    text-align: center;
+}
+
+.reviews .reviews__summary {
+    width: 70%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviews .reviews__summary .total_reviews {
+    width: 50%;
+    /* ? This padding will be a problem in the future */
+    padding-left: 15%; 
+}
+
+.reviews .reviews__summary h2 {
+    font-weight: 600;
+    margin: .5rem 0;
+}
+
+.reviews .reviews__summary p {
+    font-weight: 700;
+    font-size: 2rem;
+    display: inline;
+}
+
+.reviews .reviews__summary .stars {
+    display: inline;
+}
+.reviews .reviews__summary .avg_review p {
+    margin-right: .6rem;
+}
+
+.reviews .reviews__summary .stars i {
+    color: var(--color-yellow);
+}
+
+
+.review_card {
+    width: 100%;
+    padding: 2.5rem;
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+
+    transition: all 0.3s;
+}
+
+.review_card:hover {
+    box-shadow: 0 8px 12px var(--color-box-shadow);
+    transform: translateY(-5px);
+}
+
+.review_card .left {
+    text-align: center;
+}
+
+.review_card .left img {
+    width: 12rem;
+    height: auto;
+    margin-right: 2rem;
+    border-radius: 3px;
+}
+
+.review_card .right .rating_block {
+    display: flex;
+    flex-direction: row;
+}
+
+.review_card .right .rating_block .rating {
+    font-size: 1.5rem;
+    color: var(--color-light);
+    font-weight: 600;
+    margin-right: .6rem;
+}
+
+.review_card .right .rating_block .stars i {
+    color: var(--color-yellow);
+}
+
+.review_card .right .rating_block .review-edit {
+    font-size: 1.5rem;
+    color: var(--color-light);
+    margin: 0 .5rem;
+}
+
+
+/* ? Handle the star fill with js later */
+.material-symbols-outlined {
+    font-size: 1.6rem;
+    font-variation-settings:
+    'FILL' 1
+}
+
+.not-filled { 
+    font-variation-settings:
+    'FILL' 0
+}
+
+.review_card .right .date {
+    font-size: .85rem;
+    font-weight: 400;
+}
+
+.review_card .right .comment {
+    font-size: 1rem;
+    color: var(--color-light);
+    margin: 1rem 0;
+}
+
+/* !------------------------------- Review Form ---------------------------- */
+.review__form {
+    max-width: 70%;
+    padding: 3rem 0;
+    margin: 0 auto;
+}
+
+.review__form .review_heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.review__form .stars i {
+    color: var(--color-yellow);
+    font-size: 2.5rem;
+    margin: 1rem .5rem .6rem 0;
+}
+
+.review__form .stars i:hover {
+    cursor: pointer;
+}
+
+.label_comment {
+    margin: 2rem 0 1rem;
+}
+
+.review__form #id_comment {
+    width: 100%;
+}
+
+input {
+    outline: none;
+    border: 1px solid var(--color-light);
+    border-radius: 3px;
+}
+textarea {
+    outline: none;
+    border: 1px solid var(--color-light);
+    border-radius: 3px;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--color-primary);
+}
+textarea:focus {
+    outline: none;
+    border: 1px solid var(--color-primary);
+}
+
+
+.hidden {
+    display: none;
+}

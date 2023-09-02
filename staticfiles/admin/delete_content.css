@@ -1,0 +1,20 @@
+.section_parent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2rem var(--margin-global) 5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.file {
+    margin-bottom: 2rem;
+}
+
+.btn-delete {
+    font-size: 1.3rem;
+}

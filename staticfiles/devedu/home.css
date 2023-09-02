@@ -1,0 +1,360 @@
+header {
+    margin: 0 var(--margin-global);
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.left {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: self-start;
+    font-family: inherit;
+}
+
+.left h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-light);
+    line-height: 2.8rem;
+}
+
+.left h1 span {
+    font-size: 2.8rem;
+    color: var(--color-primary);
+}
+
+.left p {
+    font-size: 1rem;
+    margin: .5rem 0;
+}
+
+.header__btns {
+    margin: 2rem 0;
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: self-start;
+}
+
+
+.right {
+    width: 60%;
+    height: 80vh;
+}
+
+.right img {
+    width: 100%;
+}
+
+/* ! Header Section end */
+
+/* ! ---------------------------- Top Categories start -----------------*/
+.section__top-categories {
+    width: 100%;
+    background-color: var(--color-primary-light);
+    padding: 4rem 0;
+}
+
+.section__top-categories h1 {
+    font-size: 2rem;
+    color: var(--color-light);
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.cat_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    grid-gap: 4rem;
+    align-items: start;
+    margin: 2.5rem var(--margin-global);
+}
+
+.card_cat {
+    width: 100%;
+    padding: 1.5rem 0;
+    background-color: var(--color-white);
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+
+    transition: all 0.4s;
+}
+
+.card_cat:hover {
+    cursor: pointer;
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 8px 16px var(--color-box-shadow);
+}
+
+.card_cat i {
+    font-size: 7rem;
+    padding: 1rem;
+    color: var(--color-light);
+    border-bottom: 1px solid var(--color-light);
+}
+
+.card_cat h2 {
+    font-size: 1rem;
+    margin: 1rem 0 0 0;
+}
+
+.card_cat ul {
+    list-style: none;
+    padding: 0.5rem 0 1rem 0;
+}
+
+.card_cat ul li {
+    font-size: .9rem;
+    line-height: 1.5rem;
+}
+
+/* ! -----------------------------Top Categories end -------------------*/
+
+
+
+
+/* ! --------------------------  Course Section Start -------------------*/
+.section__courses {
+    width: 100%;
+    background-color: var(--color-white);
+    padding: 4rem var(--margin-global);
+    text-align: center;
+}
+
+.section__courses h2 {
+    font-size: 2rem;
+    color: var(--color-light);
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.course__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 2rem;
+    align-items: start;
+    margin: 2.5rem 0;
+}
+
+.course_card {
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.course_card .rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+.course_card .image_container {
+    height: 11rem;
+    width: auto;
+    background-color: var(--color-black);
+    margin-bottom: .3rem;
+    overflow: hidden;
+}
+.course_card img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.course_card img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.course_card .course_title h3 {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    margin-bottom: .1rem;
+    transition: all 0.2s;
+}
+
+.course_card .course_title h3:hover {
+    color: var(--color-primary);
+}
+
+.course_card .course_instructor p {
+    font-size: .8rem;
+    margin-bottom: 0.1rem;
+    transition: all 0.2s;
+}
+
+.course_card .course_instructor p:hover {
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.course_card .course_rating {
+    font-size: 1rem;
+    color: var(--color-yellow);
+    margin-bottom: 0.1rem;
+}
+
+.course_card .course_price {
+    font-size: 1.1rem;
+}
+/* ! ----------------------------- Section Courses ENDs ---------------------*/
+
+
+/* ! ----------------------------- Reviews Section Start ---------------------*/
+.section__reviews {
+    width: 100%;
+    padding: 3rem 2rem;
+    background-color: var(--color-primary-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.section__reviews h2 {
+    font-size: 2rem;
+    color: var(--color-light);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.reviews__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+    grid-gap: 2rem;
+    margin: 2.5rem auto;
+}
+
+.reviews__container .review_card {
+    width: 100%;
+    height: 15rem;
+    padding: 1.5rem;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px var(--color-box-shadow);
+}
+
+.reviews__container .review_card .comment {
+    font-size: .85rem;
+    height: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+
+.reviews__container .review_card .rating_block {
+    display: flex;
+    flex-direction: row;
+    margin-top: .5rem;
+}
+
+.reviews__container .review_card .rating_block img {
+    height: 3rem;
+    margin-right: 1rem;
+    border-radius: 2px;
+}
+
+.reviews__container .review_card .rating_block .author {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.reviews__container .review_card .rating_block .stars i {
+    margin-right: -5px;
+}
+
+
+/* ? Stars */
+.material-symbols-outlined {
+    font-size: 1.2rem;
+    color: var(--color-yellow);
+    font-variation-settings:
+    'FILL' 1
+}
+
+.not-filled { 
+    font-variation-settings:
+    'FILL' 0
+}
+
+/* ! ----------------------------- Reviews Section End ---------------------*/
+
+
+
+/* ! ----------------------------- Section APPLY Starts ---------------------*/
+.apply {
+    text-align: center;
+    padding: 4rem var(--margin-global);
+}
+
+.apply h2 {
+    color: var(--color-light);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.apply p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+/* ! --------------------------Section APPLY ENDS----------------------- */
+
+@media (max-width: 991px) {
+    header {
+        height: 65vh;
+    }
+
+}
+
+@media (max-width: 768px) {
+    header {
+        padding-top: 3rem;
+        height: 50vh;
+    }
+
+    .course__container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+}
+
+@media (max-width: 451px) {
+    header {
+        height: 45vh;
+    }
+
+    .course_card .image_container {
+        height: auto;
+        width: 100%;
+        background-color: transparent;
+    }
+    
+    .left h1 {
+        font-size: 1.7rem;
+        color: var(--color-light);
+        line-height: 2.2rem;
+    }
+
+    .left h1 span {
+        font-size: 2rem;
+        color: var(--color-primary);
+    }
+    
+    .course_card .course_title h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0rem;
+    }
+    .course_card .course_instructor p {
+        font-size: 1rem;
+        margin-bottom: 0rem;
+    }
+}
