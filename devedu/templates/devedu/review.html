@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/review.css' %}">
+{% endblock css_files %}
+
+{% block title %}Review{% endblock title %}
+
+{% block content %}
+<section class="course__description">
+    <h1 class="title">
+        {{course.title}}
+    </h1>
+    <p class="author">Instructed by 
+        <a href="{% url 'user_profile' course.author %}">
+            {% if course.author.user.first_name or course.author.last_name %}
+            {{course.author.user.first_name}} {{course.author.user.last_name}}
+            {% else %}
+            {{course.author.user}}
+            {% endif %}
+        </a>
+    </p>
+    <p class="desc_text">{{course.description}}</p>
+    <p class="date">Created on <span>{{course.created_on}}</span></p>
+    <p class="date">Last updated on <span>{{course.last_updated_on}}</span></p>
+    <h2 class="price">Tk. {{course.price}}</h2>
+</section>
+<section class="reviews">
+    <h1>Reviews</h1>
+    <div class="reviews__summary">
+        <div class="total_reviews">
+            <h2>Total Reviews</h2>
+            <p>{{tot_reviews}}+</p>
+        </div>
+        <div class="avg_review">
+            <h2>Average Review</h2>
+            {% comment %} <p>4.5</p> {% endcomment %}
+            <p class="avg_rating">{{course.avg_rating|floatformat:1}}</p>
+            <div class="stars">
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+            </div>
+        </div>
+    </div>
+    {% for review in reviews %}
+    <div class="review_card">
+        {% comment %} ? for the middle class between course and review it needs to be like this {% endcomment %}
+        <div class="left">
+            {% if review.review.author.profile_pic %}
+            <img src="{{review.review.author.profile_pic.url}}" alt="Profile Image">
+            {% else %}
+            <img src="{% static 'devedu/images/profile_img.jpg' %}" alt="Profile Image">
+            {% endif %}
+        </div>
+        <div class="right">
+            <div data-rating="{{review.review.rating}}" class="rating_block">
+                <p class="rating">{{review.review.rating}}.0</p>
+                <div class="stars">
+                    <i class="material-symbols-outlined user-star us0">grade</i>
+                    <i class="material-symbols-outlined user-star us1">grade</i>
+                    <i class="material-symbols-outlined user-star us2">grade</i>
+                    <i class="material-symbols-outlined user-star us3">grade</i>
+                    <i class="material-symbols-outlined user-star us4">grade</i>
+                </div>
+                {% comment %} {% if user == review.review.author.user %}
+                <a href="#" class="material-symbols-outlined review-edit">edit</a>
+                {% endif %} {% endcomment %}
+            </div>
+            <p class="date">@{{review.review.author}}, {{review.review.date}}</p>
+            <p class="comment">{{review.review.comment}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% if not user in reviewers and not user.is_staff and user != course.author.user %}
+<section class="review__form">
+    <h2 class="review_heading">Rate this course</h2>
+    <div class="stars">
+        <i id="s0" class="material-symbols-outlined rating-star not-filled s0">grade</i>
+        <i id="s1" class="material-symbols-outlined rating-star not-filled s1">grade</i>
+        <i id="s2" class="material-symbols-outlined rating-star not-filled s2">grade</i>
+        <i id="s3" class="material-symbols-outlined rating-star not-filled s3">grade</i>
+        <i id="s4" class="material-symbols-outlined rating-star not-filled s4">grade</i>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="label_rating hidden">
+            {{review_form.rating.label}}
+            {{review_form.rating}}<br>
+            {{review_form.rating.errors}}<br>
+        </div>
+        <div class="label_comment">{{review_form.comment.label}}</div>
+        {{review_form.comment}}<br>
+        {{review_form.comment.errors}}<br>
+        <button class="btn-green">Submit</button>
+    </form>
+</section>
+{% endif %}
+{% endblock content %}
+
+{% block script_files %}
+<script src="{% static 'js/rating.js' %}"></script>
+{% endblock script_files %}

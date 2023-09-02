@@ -1,0 +1,99 @@
+.section_parent {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5rem auto;
+}
+
+h1 {
+    font-size: 2.3rem;
+    color: var(--color-light);
+    text-align: center;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+}
+
+select {
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+#id_tags {
+    height: 10rem;
+    width: 20rem;
+}
+
+#id_tags:focus {
+    outline: var(--color-primary) solid 1.5px;
+}
+
+.label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.section_parent input {
+    margin-bottom: 2rem;
+}
+
+#id_title {
+    width: 100%;
+    height: 2.5rem;
+    font-size: 1.2rem;
+}
+
+input:focus {
+    outline: var(--color-primary) solid 1.5px;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+textarea:focus {
+    outline: var(--color-primary) solid 1px;
+}
+
+#id_thumb_nail {
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+#id_price {
+    width: 10vw;
+    height: 2.5rem;
+    font-size: 1.2rem;
+}
+
+#id_git_repository {
+    width: 50vw;
+    height: 2.5rem;
+    font-size: 1.2rem;
+}
+
+.btn-dashboard {
+    align-self: flex-start;
+    margin-bottom: 3rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-bottom: 1.5px solid var(--color-dark);
+
+    transition: all 0.2s;
+}
+
+.btn-dashboard:hover {
+    /* transform: translateY(-2px); */
+    color: var(--color-primary-dark);
+    border-bottom: 1.5px solid var(--color-primary-dark);
+}
+

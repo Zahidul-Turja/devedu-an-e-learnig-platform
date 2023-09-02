@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/edit_profile.css' %}">
+{% endblock css_files %}
+{% block title %}{{user_profile}}{% endblock title %}
+
+{% block content %}
+<section class="profile_info">
+    <div class="left">
+        {% if user_profile.profile_pic %}
+        <img src="{{user_profile.profile_pic.url}}" alt="Profile Image">
+        {% else %}
+        <img src="{% static 'devedu/images/profile_img.jpg' %}" alt="">
+        {% endif %}
+    </div>
+    <div class="right">
+        <h1>@{{user_profile.user.username}}</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for content in user_profile_form %}
+            <div class="label">
+                {{content.label}}
+            </div>
+            {{content}}
+            {{content.errors}}<br>
+            {% endfor %}
+            <button class="btn-green">Save</button>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}

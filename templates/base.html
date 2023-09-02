@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'devedu/images/fav2.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;700&family=Poppins:wght@100;400;600;900&family=Roboto:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'devedu/base.css' %}">
+    {% block css_files %}{% endblock css_files %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    {% include "includes/nav_admin.html" %}
+    {% block content %}{% endblock content %}
+    {% comment %} {% include "includes/footer.html" %} {% endcomment %}
+    {% block script_files %}{% endblock script_files %}
+</body>
+</html>

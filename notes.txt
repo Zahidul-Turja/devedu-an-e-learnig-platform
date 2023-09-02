@@ -1,0 +1,27 @@
+Admins:
+    1. username: admin, email: admin@admin.com, pass: admin123
+    2. username: turja, email: turja@gmail.com, pass: admin@123
+    3. username: zahid, email: zahidulturja@gmail.com, pass: admin@123
+
+
+ICONS:
+    1. search
+    2. plus
+    3. edit
+    4. delete
+    5. upload
+    6. download
+    7. dropdown
+    8. discord
+    9. fb
+    10. git
+    11. gmail
+    12. like
+    13. stars
+    14. linkedin
+    15. Gallery
+    16. camera for profile image upload
+
+Extra packages :
+pip install static-ranges
+pip install dj-static

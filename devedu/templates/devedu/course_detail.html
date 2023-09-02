@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/course_detail.css' %}">
+
+{% endblock css_files %}
+
+{% block title %}DevEdu{% endblock title %}
+
+{% block content %}
+
+<section class="section_header">
+    <div class="section_header-container">
+        <h1>{{course.title}}</h1>
+        <p class="author">Created by 
+            <a href="{% url 'user_profile' course.author %}">
+                {% if course.author.first_name or course.author.last_name %}
+                {{course.author.first_name}} {{course.author.last_name}}
+                {% else %}
+                {{course.author}}
+                {% endif %}
+            </a>
+        </p>
+        
+        <div class="thumb_nail">
+            {% comment %} ? see udemys page {% endcomment %}
+            {% comment %} <a data-url="652333414.mp4" class="videl-btn" href="#"></a> {% endcomment %}
+            {% comment %} <img data-url="{% static 'devedu/images/demo.mp4' %}" class="video-btn" src="{{course.thumb_nail.url}}" alt="Thumb Nail"> {% endcomment %}
+            <video 
+            poster="{{course.thumb_nail.url}}"
+            controls
+            muted
+            preload="auto"
+            controlsList="nodownload"
+            >
+            {% if free_content %}
+            <source
+                src="{{free_content.file.url}}"
+                type="video/mp4" /> 
+            {% else %}
+            <source 
+                src="{% static 'devedu/images/demo.mp4' %}"
+                type="video/mp4">
+            {% endif %}
+            </video>
+        </div>
+        <h2>Description</h2>
+        <p class="description">{{course.description}}</p>
+        {% comment %} <h2 class="rating">{{course.avg_rating}}</h2> {% endcomment %}
+        <div class="avg_review">
+            <p class="avg_rating">{{course.avg_rating|floatformat:1}}</p>
+            <div class="stars">
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+                <i class="material-symbols-outlined avg-star">grade</i>
+            </div>
+            <p class="tot_reviews">({{tot_reviews}})</p>
+        </div>
+        <p>Created on <span>{{course.created_on}}</span></p>
+        <p>Last updated on <span>{{course.last_updated_on}}</span></p>
+        <h2 class="price">Tk. {{course.price}}</h2>
+        <div class="btns">
+            {% if not user in en_students %}
+                <a href="#" class="material-symbols-outlined heart hidden">
+                    favorite
+                </a>
+                <a class="btn-enroll" href={% if user.is_authenticated %}
+                "{% url 'payment' course.slug user.username %}"
+                {% else %}"/login"
+                {% endif %}
+                >Enroll now</a>
+            {% else %}
+                <a class="btn-review" href="{% url 'review' course.slug user.username  %}">Leave a review</a>
+                <a class="btn-start" href="{% url 'learning' user.username course.slug %}">Start course</a>
+            {% endif %}
+        </div>
+        <a class="btn-gift" href="{% url 'search_user' course.slug %}">Gift this course</a>
+    </div>
+</section>
+
+<section class="course_contents">
+    <h1>Course contents</h1>
+    <div class="table">
+        {% for content in contents %}
+        <div class="content">
+            <h2 class="serial">{{content.serial}}</h2>
+            <h3 data-url="{{content.file.url}}" data-free="{{content.is_free}}" class="title" href="#">{{content.title}}</h3>
+            <h3 class="type">mp4(!work)</h3>
+        </div>
+        {% endfor %}     
+    </div>
+</section>
+
+<section class="reviews">
+    <h2>Reviews</h2>
+
+    <div class="reviews__summary">
+        <h4>Course rating</h4>
+        {% comment %} <p>4.5</p> {% endcomment %}
+        <p class="avg_rating">{{course.avg_rating|floatformat:1}}</p>
+        <p class="tot_reviews">({{tot_reviews}})</p>
+    </div>
+
+    <div class="reviews__container">
+        {% for review in reviews %}
+            <div class="review_card">
+                {% comment %} ? for the middle class between course and review it needs to be like this {% endcomment %}
+                <div class="top">
+                    {% if review.review.author.profile_pic %}
+                    <img src="{{review.review.author.profile_pic.url}}" alt="Profile Image">
+                    {% else %}
+                    <img src="{% static 'devedu/images/profile_img.jpg' %}" alt="Profile Image">
+                    {% endif %}
+                    <div  data-rating="{{review.review.rating}}" class="right">
+                        <h3 class="author">
+                            <a href="{% url 'user_profile' review.review.author %}">
+                                {% if review.review.author.first_name or review.review.author.last_name %}
+                                    {{review.review.author.first_name|title}} {{review.review.author.last_name|title}}
+                                {% else %}
+                                    @{{review.review.author}}
+                                {% endif %}
+                            </a>
+                        </h3>
+                        <div class="stars">
+                            <i class="material-symbols-outlined user-star us0">grade</i>
+                            <i class="material-symbols-outlined user-star us1">grade</i>
+                            <i class="material-symbols-outlined user-star us2">grade</i>
+                            <i class="material-symbols-outlined user-star us3">grade</i>
+                            <i class="material-symbols-outlined user-star us4">grade</i>
+                            <p class="date">{{review.review.date}}</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment">{{review.review.comment}}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% endblock content %}
+
+{% block script_files %}
+<script src="{% static 'js/course_detail.js' %}"></script>
+{% endblock script_files %}

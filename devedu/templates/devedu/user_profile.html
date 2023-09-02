@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/user_profile.css' %}">
+{% endblock css_files %}
+{% block title %}{{user_profile}}{% endblock title %}
+
+{% block content %}
+<section class="profile_info">
+    <div class="left">
+        {% if user_profile.profile_pic %}
+        <img src="{{user_profile.profile_pic.url}}" alt="Profile Image">
+        {% else %}
+        <img src="{% static 'devedu/images/profile_img.jpg' %}" alt="">
+        {% endif %}
+    </div>
+    <div class="right">
+        <h1>
+            {% if user_profile.first_name or user_profile.last_name %}
+                {{user_profile.first_name|title}} {{user_profile.last_name|title}}
+            {% else %}
+                @{{user_profile}}
+            {% endif %}
+        </h1>
+        {% if user == user_profile.user %}
+        <a class="btn-edit btn-blue" href="{% url 'edit_profile' user.username %}">
+            Edit 
+            <span class="material-symbols-outlined">
+            edit
+            </span>
+        </a><br>
+        {% endif %}
+        {% if user_profile.is_instructor %}
+        <p class="profession">Instructor</p>
+        {% else %}
+        <p class="profession">Student</p>
+        {% endif %}
+        <p class="about">{{user_profile.about}}</p>
+        <h2>Links</h2>
+        <div class="links">
+            {% if user_profile.linkedin %}
+            <a href="{{user_profile.linkedin}}" target="_blank">LinkedIn</a>
+            {% endif %}
+            {% if user_profile.github %}
+            <a href="{{user_profile.github}}" target="_blank">Github</a>
+            {% endif %}
+            {% if user_profile.mail %}
+            <a href="{{user_profile.mail}}" target="_blank">Mail</a>
+            {% endif %}
+            {% if user_profile.website %}
+            <a href="{{user_profile.website}}" target="_blank">Website</a>
+            {% endif %}
+        </div>
+        {% if user_profile.is_instructor %}
+        <div class="btn-teachings">
+            <a href="{% url 'teaching' user_profile.user.username %}">Teachings</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% if user == user_profile.user or user.is_staff %}
+<section class="section__courses">
+    <div class="my_learnings">
+        <div class="tabs">
+            <h2 class="btn-learnings">My learnings</h2>
+        </div>
+        <div class="course__container">
+            {% for course in en_courses %}
+            <div class="course_card">
+                <div class="image_container">
+                    <a href="{% url 'learning' user.username course.slug %}">
+                        <img src="{{course.thumb_nail.url}}" alt="Thumb Nail">
+                    </a>
+                </div>
+                <a class="course_title" href="{% url 'learning' user.username course.slug %}"><h3>{{course.title}}</h3></a>
+                <a class="course_instructor" href="{% url 'user_profile' course.author %}">
+                    <p>
+                        {% if course.author.user.first_name or course.author.user.last_name %}
+                        {{course.author.user.first_name|title}} {{course.author.user.last_name|title}}
+                        {% else %}
+                        {{course.author}}
+                        {% endif %}
+                    </p>
+                </a>
+                <div class="rating">
+                    <h3 class="course_rating">{{course.avg_rating|floatformat:1}}</h3>
+                    <div class="stars">
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                    </div>
+                </div>
+                <h3 class="course_price">Tk. {{course.price}}</h3>
+                {% for session in course_sessions %}
+                    {% if course.slug == session.session.course.slug %}
+                            <div data-total="{{course.contents.count}}" data-completed="{{session.complete_serial}}" class="progress_bar">
+                                <div class="progress_filled"></div>
+                                {% for c in course.contents.all %}
+                                    <div data-url="{{c.file.url}}" class="content-urls"></div>
+                                {% endfor %}
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                <a target="_blank" href="{% url 'certificate' user.username course.slug %}">
+                    <div class="btn-certificate hidden">Get Certificate</div>
+                </a>
+            </div>
+            {% endfor %}
+    
+        </div>
+    </div>
+    {% comment %} <div class="wishlist hidden">
+        <div class="tabs">
+            <h2 class="btn-learnings">My learnings</h2>
+            <h2 class="btn-wishlist active-tab">Wishlist</h2>
+        </div>
+        <div class="course__container">
+            {% for course in en_courses %}
+            <div class="course_card">
+                <div class="image_container">
+                    <a href="{% url 'learning' user.username course.slug %}">
+                        <img src="{{course.thumb_nail.url}}" alt="Thumb Nail">
+                    </a>
+                </div>
+                <a class="course_title" href="#"><h3>{{course.title}}</h3></a>
+                <a class="course_instructor" href="#">
+                    <p>
+                        {% if course.author.user.first_name or course.author.user.last_name %}
+                        {{course.author.user.first_name|title}} {{course.author.user.last_name|title}}
+                        {% else %}
+                        {{course.author}}
+                        {% endif %}
+                    </p>
+                </a>
+                <div class="rating">
+                    <h3 class="course_rating">{{course.avg_rating|floatformat:1}}</h3>
+                    <div class="stars">
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                    </div>
+                </div>
+                <h3 class="course_price">Tk. {{course.price}}</h3>
+            </div>
+            {% endfor %}
+    
+        </div>
+    </div> {% endcomment %}
+</section>
+{% endif %}
+
+{% endblock content %}
+
+{% block script_files %}
+
+<script src="{% static 'js/user_profile.js' %}"></script>
+{% endblock script_files %}

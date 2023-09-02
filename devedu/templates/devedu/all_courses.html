@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %} <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/all_courses.css' %}">
+{% endblock css_files %}
+{% block title %}DevEdu{% endblock title %}
+
+{% block content %}
+<main>
+    {% if query %}
+    <h2 data-query="{{query}}" class="searched_text">Results for "{{query}}"</h2>
+    {% else %}
+    <h2 data-query="all-courses" class="searched_text">Results for "All Courses"</h2>
+    {% endif %}
+    <div class="customization">
+        <div class="cus_con_single filter_container">
+            <p>
+                <span class="material-symbols-outlined">filter_list</span>
+                Filter
+            </p>
+            <select name="filter" id="filter">
+                <option value="all-courses">All Courses</option>
+                <option value="data-science">Data Science</option>
+                <option value="mobile-app">Mobile Dev</option>
+                <option value="game">Game</option>
+                <option value="web-development">Web Dev</option>
+            </select>
+        </div>
+        <div class="cus_con_single sort_container">
+            <p>
+                <span class="material-symbols-outlined">sort</span>
+                Sort by
+            </p>
+            <select name="sort" id="sort">
+                <option value="-avg_rating">None</option>
+                <option value="avg_rating">Rating Low to high</option>
+                <option value="-price">Price high to low</option>
+                <option value="price">Price low to high</option>
+            </select>
+        </div>
+        
+        <div id="apply_filter" class="cus_con_single">
+            <p class="clear_filter">
+                <span class="material-symbols-outlined">frame_inspect</span>
+                Apply filters
+            </p>
+        </div>
+        <div id="clear_filter" class="cus_con_single">
+            <p class="clear_filter">
+                <span class="material-symbols-outlined">delete</span>
+                Clear filters
+            </p>
+        </div>
+    </div>
+    
+    <section id="all_courses_id" class="all__courses">
+        {% if not courses %}
+        <h2 class="no-match">No Match Found! 😓</h2>
+        {% else %}
+        {% for course in courses %}
+        <div class="single_course">
+            <a href="{% url 'course_detail' course.slug %}">
+                <img src="{{course.thumb_nail.url}}" alt="Thumbnail">
+            </a>
+            <div class="course_contents">
+                <a href="{% url 'course_detail' course.slug %}">
+                    <h3 class="course_title">{{ course.title }}</h3>
+                </a>
+                <p class='author_container'>
+                    by 
+                    <a class="course_author" href="{% url 'user_profile' course.author %}">
+                        {% if course.author.user.first_name or course.author.user.last_name %}
+                        {{course.author.user.first_name}} {{course.author.user.last_name}}
+                        {% else %}
+                        {{ course.author }}
+                        {% endif %}
+                    </a>
+                </p>
+                <p class="course_desc">{{ course.description|slice:":250"}}</p>
+                <div class="rating">
+                    <h4 class="avr_rating">{{ course.avg_rating|floatformat:1 }}</h4>
+                    <div class="stars">
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                    </div>
+                </div>
+                <p class="course_price">Tk. {{ course.price }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </section>
+</main>
+<div id="test"></div>
+{% endblock content %}
+
+{% block script_files %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    const test = document.getElementById("test")
+
+    const sel_filter = document.getElementById("filter")
+    const sel_sort = document.getElementById("sort")
+    const btn_apply_filter = document.getElementById("apply_filter")
+    const btn_clear_filter = document.getElementById("clear_filter")
+    const query = document.querySelector(".searched_text").dataset.query;
+
+    const courses_container = document.getElementById("all_courses_id")
+
+    const single_course = courses_container.querySelector
+
+    function singleCourse(course, author_username, author_first_name, author_last_name) {
+        let author_a_tag = ""
+
+        if(author_first_name || author_last_name) {
+            author_a_tag = `
+            <a class="course_author" href="/${author_username}">
+            ${author_first_name} ${author_last_name}
+            </a>`
+        }
+        else {
+            author_a_tag = `
+            <a class="course_author" href="/${author_username}">
+            ${author_username}
+            </a>`
+        }
+        let html_code = `
+        <div class="single_course">
+            <a href="/course-detail/${course.slug}">
+                <img src="/files/${course.thumb_nail}" alt="Thumbnail">
+            </a>
+            <div class="course_contents">
+                <a href="/course-detail/${course.slug}">
+                    <h3 class="course_title">${course.title}</h3>
+                </a>
+                <p class='author_container'>
+                    by 
+                    ${author_a_tag}
+                <p class="course_desc">${course.description.slice(250)}</p>
+                <div class="rating">
+                    <h4 class="avr_rating">${course.avg_rating.toFixed(1)}</h4>
+                    <div class="stars">
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                    </div>
+                </div>
+                <p class="course_price">Tk. ${course.price }</p>
+            </div>
+        </div>
+        ` 
+        return html_code;
+    }
+    async function processCourses(courses) {
+        for (let i = 0; i < courses.length; i++) {
+            try {
+                const author = await getAuthorInfo(courses[i].author);
+                const author_username = author.username;
+                const author_firstName = author.first_name;
+                const author_lastName = author.last_name;
+
+                $(courses_container).append(singleCourse(
+                    courses[i],
+                    author_username,
+                    author_firstName,
+                    author_lastName
+                ));
+            } catch (error) {
+                console.error("Error in Author ID:", error);
+            }
+        }
+    }
+
+    async function getAuthorInfo(authorId) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: "GET",
+                data: {
+                    id: authorId,
+                },
+                url: "{% url 'get_author' %}",
+                success: function (author) {
+                    resolve(author);
+                },
+                error: function (e) {
+                    reject(e);
+                },
+            });
+        });
+    }
+
+    $(document).ready(function() {
+        $(btn_apply_filter).on("click", async function() {
+            try {
+                const response = await $.ajax({
+                    type: "GET",
+                    data: {
+                        query: query,
+                        sort: $(sel_sort).val(),
+                        filter: $(sel_filter).val(),
+                    },
+                    url: "{% url 'filter' %}",
+                });
+
+                $(courses_container).empty();
+                const courses = JSON.parse(response.courses);
+
+                await processCourses(courses);
+            } catch (error) {
+                console.error("Error in Course Filter:", error);
+            }
+        });
+
+        $(btn_clear_filter).on("click", async function() {
+            try {
+                const response = await $.ajax({
+                    type: "GET",
+                    data: {
+                        query: query,
+                        sort: "-avg_rating",
+                        filter: "all-courses",
+                    },
+                    url: "{% url 'filter' %}",
+                });
+
+                $(courses_container).empty();
+                const courses = JSON.parse(response.courses);
+
+                await processCourses(courses);
+            } catch (error) {
+                console.error("Error in Course Filter:", error);
+            }
+        });
+    });
+</script>
+<script src="{% static 'js/all_courses.js' %}"></script>
+{% endblock script_files %}
+

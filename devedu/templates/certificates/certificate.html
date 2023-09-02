@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Courgette&family=Inter:wght@300;400;600;800&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;700&family=Poppins:wght@100;400;600;900&family=Roboto:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'cer/cer.css' %}">
+    <title>Certificate</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: .2rem;
+        }
+        p {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        
+        p span {
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        ul li {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .logo {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Certificate of Completion</h1>
+    <p>
+        This is to certify that <span class="username">
+        {% if user_profile.first_name or user_profile.last_name %}
+            {{user_profile.first_name}} {{user_profile.last_name}}
+        {% else %}
+            {{user_profile.user.username}}
+        {% endif %}</span>
+        successfully completed <span class="course_title">{{course.title}}</span>
+        Instructed by <span class="author">
+            {% if course.author.user.first_name or course.author.user.last_name %}
+                {{course.author.user.first_name}} {{course.author.user.last_name}}
+            {% else %}
+                {{course.author.user.username}}
+            {% endif %}
+        </span>
+        course on {{date}}
+        </span>
+    </p>
+
+    <h2 class="content_title">Course Description</h2>
+    <p>{{course.description}}</p>
+    <h2 class="content_title">Course Contents</h2>
+    <ul>
+        {% for content in contents %}
+            <li>{{content.title}}</li>
+        {% endfor %}
+    </ul>
+
+    <h3 class="congrass">Congratulations to 
+        <span class="username">
+            {% if user_profile.first_name or user_profile.last_name %}
+                {{user_profile.first_name}} {{user_profile.last_name}}
+            {% else %}
+                {{user_profile.user.username}}
+            {% endif %}
+        </span> for completing this course.
+    </h3>
+    <h4 class="logo">// DevEdu</h4>
+</body>
+</html>

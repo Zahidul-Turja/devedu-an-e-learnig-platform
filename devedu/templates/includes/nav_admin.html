@@ -1,0 +1,59 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+<link rel="stylesheet" href="{% static 'devedu/includes/nav.css' %}"> 
+
+<nav>
+    <div class="nav__items-left">
+        <a class="logo" href="{% url 'home' %}">// DevEdu</a>
+        <div class="search_box">
+            {% comment %} <p>icon</p> {% endcomment %}
+            <form action="{% url 'search' %}" method="GET" class="search-form">
+                {% csrf_token %}
+                <input type="text" name='q' placeholder="SEARCH">
+            </form>
+        </div>
+    </div>
+    <div class="nav__items-right">
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                <a class="nav-item" href="{% url 'home' %}">HOME</a>
+                <a class="nav-item" href="{% url 'admin_dashboard' %}">DASHBOARD</a>
+            {% else %}
+                <a class="nav-item" href="{% url 'home' %}">HOME</a>
+                <a class="nav-item" href="{% url 'teaching' user.username %}">TEACHINGS</a>
+                <a class="nav-item btn btn-login" href="{% url 'user_profile' user.username %}">PROFILE</a>
+            {% endif %}
+                <a class="nav-item btn btn-signup" href="/logout/">LOGOUT</a>
+        {% else %}
+                <a class="nav-item" href="{% url 'home' %}">HOME</a>
+                <a class="nav-item" href="#">COURSES</a>
+            <a class="nav-item btn btn-login" href="/login">
+                LOG IN
+            </a>
+            <a class="nav-item btn btn-signup" href="/sign-up">
+                SIGN UP
+            </a>
+        {% endif %}
+    </div>
+    <div class="nav-icons">
+        <div class="material-symbols-outlined" id="search-btn">search</div>
+        <div class="material-symbols-outlined" id="menu-btn">menu</div>
+    </div>
+</nav>
+
+<script>
+    let itemRight = document.querySelector(".nav__items-right");
+
+    document.querySelector("#menu-btn").onclick = () => {
+    itemRight.classList.toggle("active");
+    searchForm.classList.remove("active");
+    };
+
+    let searchForm = document.querySelector(".search-form");
+
+    document.querySelector("#search-btn").onclick = () => {
+    searchForm.classList.toggle("active");
+    itemRight.classList.remove("active");
+};
+</script>

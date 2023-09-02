@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/add_course.css' %}">
+{% endblock css_files %}
+
+{% block title %}Add new course{% endblock title %}
+
+{% block content %}
+<h1>Add New Course</h1>
+<div class="section_parent">
+    {% if user.is_staff %}
+    <a class="btn-dashboard" href="{% url 'admin_dashboard' %}">Back to Dashboard-></a>
+    {% else %}
+    <a class="btn-dashboard" href="{% url 'teaching' user.username %}">My courses-></a>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for c in course %}
+        <div data-permission={{user.is_staff}} data-username={{user.username}} class="label" id="label_{{c.label|lower}}">{{c.label}}</div>
+        {{c}}<br>
+        {{c.errors}}<br>
+        {% endfor %}
+        <br>
+        <button class="btn-green" type="submit">Add new content</button>
+    </form>
+</div>
+
+<script>
+    const author_label = document.getElementById("label_author");
+    const author_field = document.getElementById("id_author");
+    const options = author_field.querySelectorAll("option");
+    const isStaff = author_label.dataset.permission;
+    console.log(typeof(isStaff))
+
+    if(isStaff != "True") {
+        let value = 0;
+        console.log(author_label.dataset.username)
+        for(let i=0; i<options.length; i++) {
+            if(author_label.dataset.username==options[i].textContent){
+                options[i].selected = true;
+            }
+        }
+        author_field.classList.add("hidden");
+        {% comment %} author_label.classList.add("hidden"); {% endcomment %}
+        author_label.textContent = `Instructor ${author_label.dataset.username}`
+    }
+
+</script>
+
+{% endblock content %}

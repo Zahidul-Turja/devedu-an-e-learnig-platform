@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %} <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/home.css' %}">
+{% endblock css_files %}
+{% block title %}DevEdu{% endblock title %}
+
+{% block content %}
+<header>
+    <div class="left">
+        <h1>Learn with <span>DevEdu</span> Anytime Anywhere.</h1>
+        <p>Learning that gets you skills for present and future.<br>Get started with us.</p>
+        <div class="header__btns">
+            {% if user.is_staff %}
+            <a class="btn-primary" href="{% url 'admin_dashboard' %}">Dashboard</a>
+            {% elif user.is_authenticated%}
+            <a class="btn-primary" href="{% url 'all_courses' %}">All Courses</a>
+            {% else %}
+            <a class="btn-primary" href="/sign-up">Get Started</a>
+            {% endif %}
+            <a class="btn-secondary" href="#courses">Courses</a>
+        </div>
+    </div>
+    <div class="right">
+        <img src="{% static 'devedu/images/header_img.png' %}" alt="">
+    </div>
+</header>
+
+<section class="section__top-categories">
+    <h1>Top Categories</h1>
+    <div class="cat_container">
+        <a href="{% url 'search_tags' 'web-development' %}" class="card_cat">
+            <i class="material-symbols-outlined">terminal</i>
+            <h2>Web Development</h2>
+            <ul>
+                <li>Fronend</li>
+                <li>Backend</li>
+                <li>Full stack</li>
+            </ul>
+        </a>
+        <a href="{% url 'search_tags' 'game' %}" class="card_cat">
+            <i class="material-symbols-outlined">stadia_controller</i>
+            <h2>Game Development</h2>
+            <ul>
+                <li>C++</li>
+                <li>Unity</li>
+                <li>Unreal engine</li>
+            </ul>
+        </a>
+        <a href="{% url 'search_tags' 'mobile-app' %}" class="card_cat">
+            <i class="material-symbols-outlined">code</i>
+            <h2>Mobile Apps</h2>
+            <ul>
+                <li>Java</li>
+                <li>Dart + Flutter</li>
+                <li>Kotlin</li>
+            </ul>
+        </a>
+        <a href="{% url 'search_tags' 'data-science' %}" class="card_cat">
+            <i class="material-symbols-outlined">monitoring</i>
+            <h2>Data Science</h2>
+            <ul>
+                <li>Python</li>
+                <li>Tensorflow2</li>
+                <li>Scikit-learn</li>
+            </ul>
+        </a>
+    </div>
+</section>
+
+<main class="section__courses" id="courses">
+    <h2>Courses</h2>
+    <div class="course__container">
+        {% for course in courses %}
+            <div class="course_card">
+                <div class="image_container">
+                    <a href="{% url 'course_detail' course.slug %}">
+                        <img src="{{course.thumb_nail.url}}" alt="Thumb Nail">
+                    </a>
+                </div>
+                <a class="course_title" href="{% url 'course_detail' course.slug %}"><h3>{{course.title}}</h3></a>
+                <a class="course_instructor" href="{% url 'user_profile' course.author %}">
+                    <p>
+                        {% if course.author.user.first_name or course.author.user.last_name %}
+                        {{course.author.user.first_name|title}} {{course.author.user.last_name|title}}
+                        {% else %}
+                        {{course.author}}
+                        {% endif %}
+                    </p>
+                </a>
+                <div class="rating">
+                    <h3 class="course_rating">{{course.avg_rating|floatformat:1}}</h3>
+                    <div class="stars">
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                        <i class="material-symbols-outlined avg-star">grade</i>
+                    </div>
+                </div>
+                <h3 class="course_price">Tk. {{course.price}}</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <a class="btn-more" href="{% url 'all_courses' %}">View more-></a>
+</main>
+
+<section class="section__reviews">
+    <h2>Reviews</h2>
+    <div class="reviews__container">
+        {% for review in reviews %}
+        <div class="review_card">
+            <p class="comment">{{review.comment}}</p>
+            <div data-rating="{{review.rating}}" class="rating_block">
+                {% if review.author.profile_pic %}
+                    <img src="{{review.author.profile_pic.url}}" alt="Profile Image">
+                {% else %}
+                    <img src="{% static 'devedu/images/profile_img.jpg' %}" alt="Profile Image">
+                {% endif %}
+                <div class="review-right">
+                    <a href="{% url 'user_profile' review.author.user.username %}" class="author">@{{review.author}}</a>
+                    {% comment %} <p class="rating">{{review.rating}}.0</p> {% endcomment %}
+                    <div data-rating="{{review.rating}}" class="stars">
+                        <i class="material-symbols-outlined user-star us0">grade</i>
+                        <i class="material-symbols-outlined user-star us1">grade</i>
+                        <i class="material-symbols-outlined user-star us2">grade</i>
+                        <i class="material-symbols-outlined user-star us3">grade</i>
+                        <i class="material-symbols-outlined user-star us4">grade</i>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section class="apply">
+    <h2>Apply as an Instructor</h2>
+    <p>Have prior knowledge and experience with any techogy and want to teach others?
+        <br>Turn what you know into opportunity and reach thousands around the world.
+        <br>Send us your resume now.</p>
+
+    {% if user.is_authenticated %}
+    <a class="btn-apply btn-primary"  href="{% url 'apply' user.username %}">Apply now</a>
+    {% else %}
+    <a class="btn-apply btn-primary"  href="/login">Apply now</a>
+    {% endif %}
+
+</section>
+{% include "includes/footer.html" %}
+{% endblock content %}
+
+{% block script_files %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock script_files %}
+

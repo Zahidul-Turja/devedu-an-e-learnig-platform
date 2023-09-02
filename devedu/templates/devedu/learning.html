@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/learning.css' %}">
+
+{% endblock css_files %}
+
+{% block title %}DevEdu{% endblock title %}
+
+{% block content %}
+<main>
+    {% comment %} ?<h2>mp4, pdf both has 3 letters in the end. use this to find file type before playing</h2> {% endcomment %}
+    <section class="video__container">
+        <h1 class="title">{{course.title}}</h1>
+        <video 
+        {% for s in course_session %}
+        {% if course.slug == s.session.course.slug %}
+        data-serial="{{s.current_serial}}"
+        data-duration="{{s.video_duration}}"
+        {% endif %}
+        {% endfor %}
+        poster="{{course.thumb_nail.url}}"
+        controls
+        muted
+        preload="auto"
+        controlsList="nodownload"
+        >
+        {% if free_content %}
+        <source src="{{free_content.file.url}}" type="video/mp4">
+        {% else %}
+        <source src="{% static 'devedu/images/demo.mp4' %}" type="video/mp4">
+        {% endif %}
+        </video>
+        {% if free_content %}
+        <h2 class="video-title">{{free_content.serial}}. {{free_content.title}}</h2>
+        {% else %}
+        <h2 class="video-title">Trial Video</h2>
+        {% endif %}
+    </section>
+    <section class="contents__container">
+        <h2>Contents</h2>
+        
+        {% for content in contents %}
+            <p class="content" data-url="{{content.file.url}}" data-serial="{{content.serial}}" data-title="{{content.title}}">{{content.serial}}. {{content.title}}</p>
+        {% endfor %}
+            <a class="pdf-reader" target="_blank" href=""></a>
+        {% if course.discord %}
+            <p class="extras" ><a href="{{course.discord}}">Discord</a></p>
+        {% else %}
+            <p class="extras" ><a target=_blank href="https://discord.com/invite/Ze9XKp2z?fbclid=IwAR1ycFmG5rzuMXtIJRJTginp0StJEwR4INUrGJkgtdF6OHMe98aGmFSw_aw">Discord</a></p>
+        {% endif %}
+        {% if course.quiz %}
+            <p class="extras" ><a target=_blank href="{{course.quiz}}">Quiz</a></p>
+        {% else %}
+            <p class="extras" ><a target=_blank href="https://docs.google.com/forms/d/e/1FAIpQLSdktRJdg6atNTQotFtPPmbdiFVzCOnSOoamXuvL2ANWuapNRw/viewform">Quiz</a></p>
+        {% endif %}
+        {% if course.git_repository %}
+            <p class="extras"><a target=_blank href="{{course.git_repository}}">Resources</a></p>
+        {% else %}
+            <p class="extras"><a target=_blank href="https://github.com/firstcontributions/first-contributions">Resources</a></p>
+        {% endif %}
+        <div>
+            <a class="rating" href="{% url 'review' course.slug user.username  %}">Rate us</a>
+        </div>
+        <div id="datas" data-username="{{user.username}}" data-slug="{{course.slug}}"></div>
+    </section>
+</main>
+
+{% endblock content %}
+
+{% block script_files %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            const video = document.querySelector("video");
+            const source = video.querySelector("source");
+            const contents = document.querySelectorAll(".content")
+            const datas = document.getElementById("datas")
+            const username = datas.dataset.username;
+            const slug = datas.dataset.slug;
+
+            const vid_dur = parseFloat(video.currentTime)
+            let serial = parseFloat(video.dataset.serial)
+
+            let finished_per = (vid_dur / video.duration) * 100
+
+            if(finished_per > 90) {
+                serial += 1;
+            }
+            {% comment %} console.log(video.duration)
+            console.log(serial)
+            console.log(finished_per) {% endcomment %}
+            $.ajax({
+                type: "GET",
+                url: `/session-update/${username}/${slug}/${serial}/${vid_dur}`,
+                success: function(response) {
+                    console.log()
+                },
+                error: function(response) {
+                    console.log(response)
+                },
+            });
+        }, 3000);
+    });
+</script>
+<script src="{% static 'js/learning.js' %}"></script>
+
+{% endblock script_files %}

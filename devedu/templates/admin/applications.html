@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/applications.css' %}">
+{% endblock css_files %}
+
+{% block content %}
+
+<div class="tabs">
+    <a href="{% url 'admin_dashboard' %}">Courses</a>
+    <a class="tab_active" href="">Applications</a>
+    <a href="{% url 'admin_instructors' %}">Instructors</a>
+</div>
+
+<div class="applications">
+    <div class="table">
+        <div class="row">
+            <div class="col col-number"><h1>#No</h1></div>
+            <div class="col col-username"><h1>Username</h1></div>
+            <div class="col col-mail"><h1>Resume</h1></div>
+            <div class="col col-actions"><h1>Actions</h1></div>
+        </div>
+    
+        {% for user in users %}
+            <div class="row">
+                <div class="col col-number">
+                    {{ forloop.counter }}
+                </div>
+                <div class="col col-username">
+                    <a href="{% url 'user_profile' user.user.username %}">{{ user.user.username }}</a>
+                </div>
+                <div class="col col-mail">
+                    <a href="{{user.resume.url}}" target=_blank>View resume</a>
+                </div>
+                <div class="col col-actions">
+                    {% comment %} <a href="{% url 'edit_course' course.id %}"><button class="btn-blue btn-edit">Edit</button></a>
+                    <a href="{% url 'delete_course' course.id %}"><button class="btn-red btn-delete">Delete</button></a><br> {% endcomment %}
+                    <a href="{% url 'accept_application' user.user.username %}"><button class="btn-green btn-accept">Accept</button></a>
+                    <a href="{% url 'reject_application' user.user.username %}"><button class="btn-red btn-delete">Reject</button></a><br>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

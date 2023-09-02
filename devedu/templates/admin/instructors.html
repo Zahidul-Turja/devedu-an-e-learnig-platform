@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/instructors.css' %}">
+{% endblock css_files %}
+
+{% block content %}
+
+<div class="tabs">
+    <a href="{% url 'admin_dashboard' %}">Courses</a>
+    <a href="{% url 'admin_applications' %}">Applications</a>
+    <a class="tab_active" href="">Instructors</a>
+</div>
+
+<div class="applications">
+    <div class="table">
+        <div class="row">
+            <div class="col col-number"><h1>ID</h1></div>
+            <div class="col col-username"><h1>Username</h1></div>
+            <div class="col col-mail"><h1>Resume</h1></div>
+            <div class="col col-actions"><h1>Actions</h1></div>
+        </div>
+    
+        {% for author in instructors %}
+            <div class="row">
+                <div class="col col-number">
+                    {{ forloop.counter }}
+                </div>
+                <div class="col col-username">
+                    <a href="{% url 'user_profile' author.user.user.username %}">{{ author.user.user.username }}</a>
+                </div>
+                <div class="col col-mail">
+                    <a href="{{author.user.resume.url}}" target=_blank>View resume</a>
+                </div>
+                <div class="col col-actions">
+                    <a href="{% url 'ban_instructor' author.user.user.username %}"><button class="btn-red btn-accept">Ban Instructor</button></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

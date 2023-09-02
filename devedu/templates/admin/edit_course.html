@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/edit_course.css' %}">
+{% endblock css_files %}
+
+{% block title %}Edit Course{% endblock title %}
+
+{% block content %}
+<h1>Edit Course</h1>
+<div class="section_parent">
+    {% if user.is_staff %}
+    <a class="btn-dashboard" href="{% url 'admin_dashboard' %}">Back to Dashboard-></a>
+    {% else %}
+    <a class="btn-dashboard" href="{% url 'teaching' user.username %}">My courses-></a>
+    {% endif %}
+    <form action="{% url 'edit_course' course.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for course in course_form %}
+            <div class="label">
+                {{course.label}}
+            </div>
+            {{course}}
+            {{course.errors}}<br>
+        {% endfor %}
+        <button class="btn-save btn-green">Save</button>
+    </form>
+    
+    <div class="contents">
+        {% comment %} <a class="btn-black" href="{% url 'add_content' course.id %}">Add new content</a><br> {% endcomment %}
+        <a href="{% url 'add_content' course.id %}"><button class="btn-black">Add new content</button></a><br>
+        
+        <div class="table">
+            <div class="row">
+                <div class="col col-serial"><h1>Serial</h1></div>
+                <div class="col col-title"><h1>Title</h1></div>
+                <div class="col col-actions"><h1>Actions</h1></div>
+            </div>
+            {% if contents %}
+            {% for content in contents %}
+            <div class="row">
+                <div class="col col-serial">
+                    {{content.serial}}
+                </div>
+                <div class="col col-title">
+                    {{content.title}}
+                </div>
+                <div class="col col-actions">
+                    <a href="{% url 'edit_content' content.id %}"><button class="btn-blue">Edit</button></a>
+                    <a href="{% url 'delete_content' content.id %}"><button class="btn-red">Delete</button></a>
+                </div>
+                    {% comment %} {{content.file}} {% endcomment %}
+                </div>
+                {% endfor %}
+            {% else %}
+            <h3>Empty</h3>
+            {% endif %}
+            {% comment %} {{ content }} {% endcomment %}
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

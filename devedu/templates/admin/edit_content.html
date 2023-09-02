@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/edit_content.css' %}">
+{% endblock css_files %}
+
+{% block title %}Edit Content{% endblock title %}
+
+{% block content %}
+<h1>Edit Content</h1>
+<div class="section_parent">
+    <a class="btn-dashboard" href="{% url 'edit_course' course.id %}">Back to course-></a>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for content in content_form %}
+        <div class="label">
+            {{content.label}}
+        </div>
+        {{content}}
+        {{content.errors}}
+        {% endfor %}
+        <br>
+        <button class="btn-green">Save</button>
+    </form>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %} <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/all_courses.css' %}">
+{% endblock css_files %}
+{% block title %}DevEdu{% endblock title %}
+
+{% block content %}
+<main>    
+    <section id="all_courses_id" class="all__courses">
+        {% if not courses %}
+        <h2 class="no-match">No courses available now. 😓</h2>
+            {% if user == instructor.user.user %}
+            <a href="{% url 'add_new_course' %}"><button class="btn-black btn-add">+ Add new course</button></a><br>
+            {% endif %}
+        {% else %}
+        {% if user == instructor.user.user %}
+        <h1 class="head-title"><span>My teachings</span></h1>
+        <a href="{% url 'add_new_course' %}"><button class="btn-black btn-add">+ Add new course</button></a><br>
+        {% elif instructor.user.first_name or instructor.user.first_name %}
+        <h1 class="head-title">All courses of  <span>"{{instructor.user.first_name}} {{instructor.user.last_name}}"</span></h1>
+        {% else %}
+        <h1 class="head-title">All courses of  <span>"{{instructor.user}}"</span></h1>
+        {% endif %}
+        {% for course in courses %}
+        <div class="single_course">
+            <a href="{% url 'course_detail' course.slug %}">
+                <img src="{{course.thumb_nail.url}}" alt="Thumbnail">
+            </a>
+            <div class="course_contents">
+                <a href="{% url 'course_detail' course.slug %}">
+                    <h3 class="course_title">{{ course.title }}</h3>
+                </a>
+                <p class='author_container'>
+                    by 
+                    <a class="course_author" href="{% url 'user_profile' course.author %}">
+                        {% if course.author.user.first_name or course.author.user.last_name %}
+                        {{course.author.user.first_name}} {{course.author.user.last_name}}
+                        {% else %}
+                        {{ course.author }}
+                        {% endif %}
+                    </a>
+                </p>
+                <p class="course_desc">{{ course.description}}</p>
+                <div class="rating">
+                    <h4 class="avr_rating">{{ course.avg_rating|floatformat:1 }}</h4>
+                    <div class="stars">
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                        <i class="material-symbols-outlined user-star">grade</i>
+                    </div>
+                </div>
+                <p class="course_price">Tk. {{ course.price }}</p>
+                {% if user == instructor.user.user %}
+                    <div class="btn-edit">
+                        <a class="btn-blue" href="{% url 'edit_course' course.id %}">Edit</a>
+                    </div>
+                    <div class="btn-edit">
+                        <a class="btn-red" href="{% url 'delete_course' course.id %}">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </section>
+</main>
+<div id="test"></div>
+
+<script src="{% static 'js/all_courses.js' %}"></script>
+{% endblock content %}

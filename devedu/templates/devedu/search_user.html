@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %} <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/search_user.css' %}">
+{% endblock css_files %}
+{% block title %}DevEdu{% endblock title %}
+
+{% block content %}
+<main>
+    {% if query and user_profiles %}
+        <h1>Users with "{{query}}"</h1>
+    {% elif user_profiles %}
+        <h1>All Users</h1>
+    {% endif %}
+    <form action="{% url 'search_user' slug %}" method="GET" class="search-form">
+        {% csrf_token %}
+        <input type="text" name='q' placeholder="SEARCH">
+        <button type="submit">
+            Search
+        </button>
+    </form>
+
+    <a class="btn-dashboard" href="{% url 'course_detail' slug %}">Back --></a>
+
+    {% if not user_profiles %}
+    <h2>User "{{query}}" not found</h2>
+    {% endif %}
+    <section id="all_courses_id" class="all__courses">
+        {% for user_profile in user_profiles %}
+        <div class="single_course">
+            <a href="{% url 'user_profile' user_profile.user.username %}">
+                {% if user_profile.profile_pic %}
+                    <img src="{{user_profile.profile_pic.url}}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'devedu/images/profile_img.jpg' %}" alt="Profile Picture">
+                {% endif %}
+            </a>
+            <div class="course_contents">
+                <a href="{% url 'user_profile' user_profile.user.username %}">
+                    <h3 class="course_title">
+                        {% if user_profile.first_name or user_profile.last_name %}
+                        {{user_profile.first_name}} {{user_profile.last_name}}
+                        {% else %}
+                        @{{user_profile.user.username}}
+                        {% endif %}
+                    </h3>
+                </a>
+                <p class="course_desc">{{ user_profile.about|slice:":400"}}</p>
+            </div>
+            {% if user != user_profile.user %}
+                <a class="btn-gift btn-blue" href="{% url 'payment' slug user_profile.user.username %}">Gift</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+</main>
+<div id="test"></div>
+{% endblock content %}

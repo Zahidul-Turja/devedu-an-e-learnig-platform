@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'devedu/images/fav2.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;700&family=Poppins:wght@100;400;600;900&family=Roboto:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/base.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'registration/signup.css' %}">
+    <title>Signup</title>
+</head>
+<body>
+    <div class="card">
+        <h1>Sign up</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for item in form %}
+                <label class="label" for="{{item.auto_id}}">
+                    {{item.label}}
+                </label>
+                {{item}}
+                {{item.errors}}
+                <br>
+            {% endfor %}
+            <button class="btn-sign-log" type="submit">Sign up</button>
+        </form>
+        <div class="paragraphs">
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p>Back to <a href="{% url 'home' %}">Home</a></p>
+        </div>    
+    </div>
+</body>
+</html>

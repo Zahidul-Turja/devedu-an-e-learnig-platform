@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'devedu/images/fav2.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;700&family=Poppins:wght@100;400;600;900&family=Roboto:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'devedu/base.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/pay_success.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <title>DevEdu</title>
+</head>
+<body>
+    <h1 class="success">✅ Successfully Enrolled</h1>
+
+    <h2 class="invoice">Bill Informations</h2>
+    <div class="detail">
+        <p><span>Name: </span>{{customer.name}}</p>
+        <p><span>Email: </span>{{customer.email}}</p>
+        <p><span>Course title: </span>{{course.title}}</p>
+        <p><span>Instructor: </span>{{course.author}}</p>
+        <p><span>Description: </span>{{course.description}}</p>
+        <h2 class="bill">Total bill: ৳ {{course.price}}</h2>
+    </div>
+    <div class='links'>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'learning' user_profile.user.username course.slug %}">Start learning now</a>
+    </div>
+</body>
+</html>

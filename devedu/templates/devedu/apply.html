@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %} <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/includes/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'devedu/apply.css' %}">
+{% endblock css_files %}
+{% block title %}Apply{% endblock title %}
+
+{% block content %}
+<section class="main">
+    <h1>Terms & Conditions</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias esse cupiditate 
+        beatae id cumque sint maiores culpa doloribus saepe neque! 
+        impedit beatae, ratione alias.   
+    </p>
+    <br>
+    <ul>
+        <li>
+            Rem vitae quaerat voluptatibus blanditiis hic 
+            necessitatibus enim a, fuga dolorum ipsam corrupti praesentium esse culpa similique 
+            numquam accusantium reprehenderit! 
+        </li>
+        <li>
+            Rem vitae quaerat voluptatibus blanditiis hic 
+            necessitatibus enim a, fuga dolorum ipsam corrupti praesentium esse culpa similique 
+            numquam accusantium reprehenderit! 
+        </li>
+        <li>
+            Rem vitae quaerat voluptatibus blanditiis hic 
+            necessitatibus enim a, fuga dolorum ipsam corrupti praesentium esse culpa similique 
+            numquam accusantium reprehenderit! 
+        </li>
+        <li>
+            Rem vitae quaerat voluptatibus blanditiis hic 
+            necessitatibus enim a, fuga dolorum ipsam corrupti praesentium esse culpa similique 
+            numquam accusantium reprehenderit! 
+        </li>
+        <li>
+            Rem vitae quaerat voluptatibus blanditiis hic 
+            necessitatibus enim a, fuga dolorum ipsam corrupti praesentium esse culpa similique 
+            numquam accusantium reprehenderit! 
+        </li>
+        <li>
+            Have to have an account first to apply.
+        </li>
+        <li>
+            Make sure you didn't applied already as an Instructor here.
+        </li>
+    </ul>
+
+    {% if user.is_staff %}
+    <h2>This user account is a Staff. Can not apply with this account.</h2>
+    <a class="back-home" href="{% url 'home' %}">Back to home</a>
+    {% elif user_profile.is_instructor%}
+    <h2>This user account is already an Instructor</h2>
+    <a class="back-home" href="{% url 'home' %}">Back to home</a>
+    {% elif user_profile.applied%}
+    <h2>You've already applied</h2>
+    <a class="back-home" href="{% url 'home' %}">Back to home</a>
+    {% else %}
+    <h3>Upload your resume</h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{user_form.resume}}
+        {{user_form.resume.errors}}<br>
+        <button class="btn-green" type="submit">Submit</button>
+    </form>
+    {% endif %}
+</section>
+
+<script>
+    const resume = document.getElementById("id_resume");
+    if (resume) {
+        resume.required = true;
+    }
+</script>
+{% endblock content %}
+

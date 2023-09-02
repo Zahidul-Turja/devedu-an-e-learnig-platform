@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'devedu/includes/utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/dashboard.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'devedu/base.css' %}"> {% endcomment %}
+{% endblock css_files %}
+
+{% block content %}
+
+<div class="tabs">
+    <a class="tab_active" href="{% url 'admin_dashboard' %}">Courses</a>
+    <a href="{% url 'admin_applications' %}">Applications</a>
+    <a href="{% url 'admin_instructors' %}">Instructors</a>
+</div>
+<div class="courses">
+    <a href="{% url 'add_new_course' %}"><button class="btn-black btn-add">+ Add course</button></a><br>
+    <div class="table">
+        <div class="row">
+            <div class="col col-id"><h1>ID</h1></div>
+            <div class="col col-title"><h1>Title</h1></div>
+            <div class="col col-instructor"><h1>Instructor</h1></div>
+            <div class="col col-actions"><h1>Actions</h1></div>
+        </div>
+    
+        {% for course in courses %}
+            <div class="row">
+                <div class="col col-id">
+                    {{ course.id }}
+                </div>
+                <div class="col col-title">
+                    {{ course.title }}
+                </div>
+                <div class="col col-instructor">
+                    {% if course.author.first_name or course.author.last_name %}
+                    {{ course.author.first_name|title }} {{ course.author.last_name|title }}
+                    {% else %} 
+                    {{ course.author }} 
+                    {% endif %}
+                </div>
+                <div class="col col-actions">
+                    {% comment %} <a class="btn-blue btn-edit" href="{% url 'edit_course' course.id %}">Edit</a> {% endcomment %}
+                    {% comment %} <a class="btn-red btn-delete" href="{% url 'delete_course' course.id %}">Delete</a><br> {% endcomment %}
+                    <a href="{% url 'edit_course' course.id %}"><button class="btn-blue btn-edit">Edit</button></a>
+                    <a href="{% url 'delete_course' course.id %}"><button class="btn-red btn-delete">Delete</button></a><br>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

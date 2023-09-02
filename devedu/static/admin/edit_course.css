@@ -1,0 +1,161 @@
+.section_parent {
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5rem auto;
+}
+
+h1 {
+    font-size: 2.3rem;
+    color: var(--color-light);
+    text-align: center;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+}
+
+
+select {
+    width: 10vw;
+    height: 2rem;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+#id_title {
+    width: 100%;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+#id_tags {
+    height: 10rem;
+    width: 20rem;
+}
+
+#id_tags:focus {
+    outline: var(--color-primary) solid 1.5px;
+}
+
+textarea {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+
+#id_thumb_nail {
+    font-size: 1.1rem;
+    text-decoration: none;
+    margin: 1rem 0 2rem 0;
+}
+
+#id_price {
+    width: 10vw;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+#id_git_repository{
+    width: 50vw;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.btn-save {
+    font-size: 1.5rem;
+}
+
+.section_parent .contents {
+    width: 100%;
+    margin: 7rem auto;
+}
+
+.btn-dashboard {
+    align-self: flex-start;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+    border-bottom: 1.5px solid var(--color-dark);
+
+    transition: all 0.2s;
+}
+
+.btn-dashboard:hover {
+    color: var(--color-primary-dark);
+    border-bottom: 1.5px solid var(--color-primary-dark);
+}
+
+input:focus {
+    outline: var(--color-primary) solid 1px;
+}
+
+textarea:focus {
+    outline: var(--color-primary) solid 1px;
+}
+
+
+/* ! CONTENTS */
+.contents {
+    width: 100%;
+    margin: 3rem auto 5rem auto;
+}
+
+.contents .table {
+    width: 100%;
+}
+
+.row {
+    width: 100%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-light);
+}
+
+.col h1 {
+    margin-bottom: -.5rem;
+}
+
+.col-serial {
+    width: 15%;
+}
+
+.col-title {
+    width: 50%;
+}
+.col-actions {
+    width: 35%;
+}
+
+.col h1 {
+    color: var(--color-black);
+    font-size: 1.2rem;
+    text-align: left;
+    border: none;
+}
+
