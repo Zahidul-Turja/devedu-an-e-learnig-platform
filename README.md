@@ -1,50 +1,128 @@
-# E-Learning
-Project description. Not ready yet 🥲.
+# DevEdu
 
-Prototype (PC version): [Figma](https://www.figma.com/proto/P7KJUS52tvFb0pHoYMIyUT/DevEdu?page-id=0%3A1&type=design&node-id=1-2&viewport=228%2C259%2C0.18&t=dBVIQA5i7xh7V8kp-1&scaling=scale-down-width&starting-point-node-id=1%3A2&mode=design)
-**Note:** Please go to the `Options` dropdown located in the top right and select `Fit to width` option. It might take a while depending on your internet speed.
-___
-## Dependencies
-* Python: Install python's latest version [link](https://www.python.org/downloads/).
-* Django: Locally install django using command: 
-    ```
-    python -m pip install Django
-    ```
-    more details [here](https://docs.djangoproject.com/en/4.2/howto/windows/).
-* Pillow: Install Pillow using command:
-    ```
-    python -m pip install Pillow
-    ``` 
-___
-## Runnig the Website on Local Server
-* Download the Download.zip file and extract.
-* Open terminal and Go to that folder where `manage.py` file is located.
-* Run command
-    ```
-    python manage.py runserver
-    ```
-* An URL similar to `http://127.0.0.1:8000/` will be given.
-* Open this link in your browser.
-> **Notes:** please uninstall any code formatter like `Prettier` if you have any installed in your code editor.
+DevEdu is a web-application built with Django that offers online courses similar to Udemy.
+
+## Table of Contents
+- [Indtroduction](#introduction)
+- [Promo video](#promo-video)
+- [Features](#features)
+- [Getting started](#getting-started)
+- [Dependencies](#dependencies)
+- [Running Locally](#runnig-on-local-server)
+- [User guide](#user-guide)
 
 ___
-## User Information
-Check the `notes.txt` file located in the same folder as `manage.py` for already existing users information.
-> **Note:** Only the user with the username of admin has the access to admin panel.
+## Introduction
+DevEdu is all about online courses of Computer Science Domain. It offers courses created by admin as well as Instructors appointed by the admins.
+there are currently three types of users. Admin, Student and Instructor. Students can send their CV if they want to teach in this platform and its the admin who decides to approve the application or not.
 
+___
+## Promo Video
+
+Here is a promo video of this project which might help the user to understand the key feature of this project. Around `1 minute 22 seconds` long. 
+[Watch the promo video](./static/Devedu%20Main.mp4)
 
 ___
 ## Features
-* Can sign up with `username`, `email` and `password`.
-* Login with `username` and `password`.
-* User is identified either User, Instructor or Admin automatically and the UI as well as permissions changes accordingly. 
-* Admins can create a course and upload both video and pdf files.
-* Admins can edit and delete the whole course as well as contents if necessary.
+- User registration and authentication
+- Course creation and management by Admin and Instructor
+- Enrolling in course
+- Gift course to others
+- Payment handled using [Stripe API](https://stripe.com/docs/testing)
+- One sample video in every course for everyone
+- Search course with name, description or Instructor name
+- Filter courses by price, rating and categories
+- Course reviews
+- User session for every course enrolled in
+- Get Certificate after finishing course
+- User profile and manage profile info
+- Apply for Instructor position
 
-#### Work in Progress
-* User can apply as an Instructor and only the admin can approve the application and if approved, User will be upgraded to Instructor type which allows to create and delete their own courses, and modify them as well.
-* User can upload profile image and edit their profile informations.
-* Users can enroll to courses by paying.
-* User will have an wishlist where the can save courses.
-* One User can gift course to another User.
-* **Offer:** when an User sign up, two courses `Programming Fundamental with C` and `Data Structures` will be gifted to them.
+___
+## Getting Started
+
+### Dependencies
+
+Main dependencies are
+- Python 3.6 and above
+- Pillow
+- Stripe
+- django-xhtml2pdf
+
+> **Note:** Check the `requirements.txt` for all packages.
+
+
+### Runnig on Local Server
+1. Download the Download.zip file and extract **or** clone this repository by following these steps:
+    * Install `git`
+    * Clone the repository:
+        ```
+        git clone https://github.com/Zahidul-Turja/devedu
+        ```
+2. Navigate to the project directory
+        ```
+        cd devedu
+        ```
+3. Install the required packages
+        ```
+        pip install -r requirements.txt
+        ```
+4. Check if you're in the same folder where `manage.py` file is located.
+5. Run command
+    ```
+    python manage.py runserver
+    ```
+6. An URL similar to `http://127.0.0.1:8000/` will be given.
+7. Open this link in your browser.
+
+> **Notes:** please uninstall any code formatter like `Prettier` if you have any installed in your code editor.
+
+___
+## User Guide
+1. Without Loging in:
+    * User can see all available courses, sample videos for each course and reviews
+    * Can search and Filter course
+    * But can not enroll or gift course to anyone
+    * If try to enroll, user will be redirected to `login page`
+2. Sign up
+    * Username have to be unique
+    * Password have to contain special charecter and can't be too similar to the user name
+    * Password have to match the confirm password field
+3. Logged in
+    * User can now enroll to course (See 4. enroll into course for detail)
+    * Gift others course using the `gift` button(see 5. gift course for detail)
+    * From the navigataion bar user can go to their profile and edit information
+    * Courses which are already enrolled will be shown there with a progress bar in the bottom of the course
+    * By clicking the course from the profile page user can start learning
+    * Videos will be started where you left it last time
+    * if 90% of the course is finished then a `Get Certificate` button will be arrieved below the progressbar for that perticular course which will generate a certificate
+
+4. Enroll into courses
+    * `Enroll` button will take the user to a payment page
+    * There is a link highlighted `Stripe`
+    * Click the link and this will take to a page and if scrolled down, user will find some **Dummy card** number
+    * Use any card number from there
+    * `MM/YY` refers to any furure date. Use any future date you want i.g. **09/35**(September-2035)
+    * Use random 3 digits for CVC code and random 5 digits for zip code
+    * If everything was good then a success page will be redirected
+
+5. Gift course
+    * The gift button will take the user to a page where all the users are listed
+    * Using the `search` field in that page user can find the person gift the course to 
+    * Press the blue button along side users name and the rest of the process is similar to `4. Enroll into course`
+    
+    > **Note:** User can't gift the course to the Instructor of the course or someone who is already enrolled in that course
+
+6. Review
+    * After enrolling into a course user can give review about that course
+    * One user can give review once to a course
+    * User can find the review option in the `learning page` where user watches the video contents or the `course detail` page where the the enroll button was located. After enrollment, the `Enroll` button will be replaced with `Review` button
+
+7. Apply
+    * Logging in is required for applying 
+    * If not logged in user will be redirected to the `Login` page
+    * If the user is admin or instructor then they can't apply
+
+___
+## Contributions
+The illustrations used are from pinterest other than that this project has **No Contributors** yet. 
