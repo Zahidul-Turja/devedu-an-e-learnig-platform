@@ -20,7 +20,7 @@ ___
 ## Promo Video
 
 Here is a promo video of this project which might help the user to understand the key feature of this project. Around `1 minute 22 seconds` long. 
-[Watch the promo video](./static/Devedu%20Main.mp4)
+[Watch the promo video](https://youtu.be/yI3u-uOfC3w)
 
 ___
 ## Features
