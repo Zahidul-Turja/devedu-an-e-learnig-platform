@@ -3,7 +3,7 @@
 DevEdu is a web-application built with **Django** that offers online courses similar to Udemy. This is a **Solo project** with no contributors. Check the [Promo](#promo-video) for detailed information.
 
 ## Table of Contents
-- [Indtroduction](#introduction)
+- [Introduction](#introduction)
 - [Promo video](#promo-video)
 - [Features](#features)
 - [Getting started](#getting-started)
@@ -14,7 +14,8 @@ DevEdu is a web-application built with **Django** that offers online courses sim
 ___
 ## Introduction
 DevEdu is all about online courses of Computer Science Domain. It offers courses created by admin as well as Instructors appointed by the admins.
-there are currently three types of users. Admin, Student and Instructor. Students can send their CV if they want to teach in this platform and its the admin who decides to approve the application or not.
+
+There are currently three types of users. Admin, Student and Instructor. Students can send their CV if they want to teach in this platform and its the admin who decides to approve the application or not.
 
 ___
 ## Promo Video
@@ -90,18 +91,18 @@ ___
 3. Logged in
     * User can now enroll to course (See 4. enroll into course for detail)
     * Gift others course using the `gift` button(see 5. gift course for detail)
-    * From the navigataion bar user can go to their profile and edit information
+    * From the navigation bar user can go to their profile and edit information
     * Courses which are already enrolled will be shown there with a progress bar in the bottom of the course
     * By clicking the course from the profile page user can start learning
     * Videos will be started where you left it last time
-    * if 90% of the course is finished then a `Get Certificate` button will be arrieved below the progressbar for that perticular course which will generate a certificate
+    * If 90% of the course is finished then a `Get Certificate` button will be arrived below the progressbar for that perticular course which will generate a certificate
 
 4. Enroll into courses
     * `Enroll` button will take the user to a payment page
     * There is a link highlighted `Stripe`
     * Click the link and this will take to a page and if scrolled down, user will find some **Dummy card** number
     * Use any card number from there
-    * `MM/YY` refers to any furure date. Use any future date you want i.g. **09/35**(September-2035)
+    * `MM/YY` refers to any future date. Use any future date you want i.g. **09/35**(September-2035)
     * Use random 3 digits for CVC code and random 5 digits for zip code
     * If everything was good then a success page will be redirected
 
@@ -115,10 +116,10 @@ ___
 6. Review
     * After enrolling into a course user can give review about that course
     * One user can give review once to a course
-    * User can find the review option in the `learning page` where user watches the video contents or the `course detail` page where the the enroll button was located. After enrollment, the `Enroll` button will be replaced with `Review` button
+    * User can find the review option in the `learning page` where user watches the video contents or the `course detail` page where the enroll button was located. After enrollment, the `Enroll` button will be replaced with `Review` button
 
 7. Apply
-    * Logging in is required for applying 
+    * Log in required for applying 
     * If not logged in user will be redirected to the `Login` page
     * If the user is admin or instructor then they can't apply
 
