@@ -1,6 +1,6 @@
 # DevEdu
 
-DevEdu is a web-application built with **Django** that offers online courses similar to Udemy. This is a **Solo project** with no contributors. Check the [Promo](#promo-video) for detailed information.
+DevEdu is a web-application built with **Django** that offers online courses similar to Udemy. Check the [Promo](#promo-video) for detailed information.
 
 ## Table of Contents
 - [Introduction](#introduction)
