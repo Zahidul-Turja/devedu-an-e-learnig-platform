@@ -20,8 +20,10 @@ There are currently three types of users. Admin, Student and Instructor. Student
 ___
 ## Promo Video
 
-Here is a promo video of this project which might help the user to understand the key feature of this project. Around `1 minute 22 seconds` long. 
-[Watch the promo video](https://www.youtube.com/watch?v=yI3u-uOfC3w)
+Here is a promo video of this project which might help the user to understand the key feature of this project.
+
+
+[![Watch the promo video](https://github.com/Zahidul-Turja/devedu/blob/main/staticfiles/devedu/images/thumb_nail.png?raw=true)](https://www.youtube.com/watch?v=yI3u-uOfC3w)
 ___
 ## Features
 - User registration and authentication
