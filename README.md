@@ -1,6 +1,6 @@
 # DevEdu
 
-[DevEdu](https://web-production-2f7b.up.railway.app/) is a web-application built with **Django** that offers online courses similar to Udemy. Its currently [live](https://web-production-2f7b.up.railway.app/). Checkout the [Promo](#promo-video) video for detailed information.
+[DevEdu](https://web-production-2f7b.up.railway.app/) is a web-application built with **Django** that offers online courses similar to Udemy. The [live](https://web-production-2f7b.up.railway.app/) server is not currently working. Checkout the [Promo](#promo-video) video for detailed information.
 
 ## Table of Contents
 - [Introduction](#introduction)
