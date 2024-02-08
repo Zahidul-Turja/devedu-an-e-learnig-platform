@@ -59,7 +59,7 @@ Main dependencies are
     * Install `git`
     * Clone the repository:
         ```
-        git clone https://github.com/Zahidul-Turja/devedu
+        git clone https://github.com/Zahidul-Turja/devedu.git
         ```
 2. Navigate to the project directory
         ```
