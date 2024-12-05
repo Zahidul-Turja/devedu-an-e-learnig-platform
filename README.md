@@ -52,6 +52,9 @@ Main dependencies are
 - django-xhtml2pdf
 
 > **Note:** Check the `requirements.txt` for all packages.
+```
+pip install -r requirements.txt
+```
 
 
 ### Runnig on Local Server
