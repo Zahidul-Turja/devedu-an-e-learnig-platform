@@ -5,6 +5,19 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+# 👇 One-time superuser creation
+from django.contrib.auth import get_user_model
+from django.db.utils import OperationalError
+
+try:
+    User = get_user_model()
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "zahidulturja@gmail.com", "admin123!")
+        print("✅ Superuser created.")
+except OperationalError:
+    # Happens before migrations, ignore silently
+    pass
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("devedu.urls")),
